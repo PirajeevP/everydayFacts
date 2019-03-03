@@ -1,0 +1,27 @@
+.top ul{
+  list-style-type: none;
+    margin: 0px;
+    overflow: hidden;
+    background-color: White;
+    border-bottom-style: solid;
+    border-width: 2px;
+    border-color: black;
+  
+  }
+  
+  .top li {
+    float: right;
+  }
+  .top a {
+    display: block;
+    color: Black;
+    padding: 16px;
+    text-decoration: none;
+  }
+  body{
+
+    font-family: Helvetica Neue;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
