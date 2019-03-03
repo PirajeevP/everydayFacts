@@ -256,3 +256,38 @@ display: inline;
 .ql-editor{
     background-color: white;
 }
+/*Login Page*/
+    .loginF{
+        text-align: center;
+    }
+    .loginF input{
+        padding: 10px;
+        height: 20px;
+        width: 50%;
+        margin-top: 5px;
+    }
+    .loginF button{
+        padding: 10px 20px;
+        text-decoration: none;
+        background-color: dodgerblue;
+        font-size: 15px;
+        font-weight: 700;
+    }
+/* Forgot Page */
+    .forgotF{
+        text-align: center;
+    }
+    .forgotF input{
+        padding: 10px;
+        height: 20px;
+        width: 50%;
+        margin-top: 5px;
+    }
+    .forgotF button{
+        padding: 10px 20px;
+        text-decoration: none;
+        background-color: dodgerblue;
+        font-size: 15px;
+        font-weight: 700;
+        margin-top: 10px;
+    }
