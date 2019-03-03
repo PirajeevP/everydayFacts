@@ -193,4 +193,59 @@ input[type="button"]{
     height: 150px;
 }
 
-/* OTHER PAGE */
+/* INDEX.HTML */
+.content-area-hm{
+    padding: 10px;
+    padding: 10px;
+    display: block;
+    margin-top: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.fact{
+    background-color: blue;
+    max-width: 450px;
+    max-height: 100px;
+}
+
+.fact img{
+    width: 100px;
+    float: left;
+}
+
+.fact-info h4{
+    font-size: 12px;
+}
+
+.fact-info{
+    margin-left: 10px;
+}
+
+.fact-info p{
+    font-size: 12px;
+}
+
+.fact-category{
+    float: right;
+}
+
+.post-detail-left{
+display: inline;
+}
+
+.post-detail-left{
+    font-size: 10px;
+}
+
+.post-detail-left p{
+    display: inline-block;
+}
+
+.rating{
+    max-height: 100px;
+    max-width: 50px;
+    float: right;
+}
+
+
