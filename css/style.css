@@ -50,6 +50,8 @@ footer{
     padding: 10px;
     margin-top: 20px;
     height: 100px;
+    position: fixed;
+    width: 100%;
 }
 
 footer p, footer h1{
@@ -247,5 +249,10 @@ display: inline;
     max-width: 50px;
     float: right;
 }
-
-
+/* Text Editor Changes*/
+.ql-toolbar{
+    background-color: white;
+}
+.ql-editor{
+    background-color: white;
+}
