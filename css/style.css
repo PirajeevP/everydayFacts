@@ -50,6 +50,8 @@ footer{
     padding: 10px;
     margin-top: 20px;
     height: 100px;
+    position: fixed;
+    width: 100%;
 }
 
 footer p, footer h1{
@@ -191,6 +193,13 @@ input[type="button"]{
     resize:vertical;
     width: 100%;
     height: 150px;
+}
+/* Text Editor CSS*/
+.ql-toolbar{
+    background-color: white;
+}
+.ql-editor{
+    background-color: white;
 }
 
 /* OTHER PAGE */
