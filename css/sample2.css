@@ -1,0 +1,66 @@
+html{
+    padding:0;
+    margin: 0;
+    width: 100%;
+}
+
+body{
+    background-color: #f5fafd;
+}
+
+.top-nav{
+    background-color: white;
+}
+
+nav{
+    padding: 0;
+    margin:0;
+    width: 100%;
+}
+
+.top-nav ul{
+    list-style-type: none;
+    display: inline;
+}
+
+.right-links{
+    text-align: right;
+}
+
+.right-links ul{
+    display: flex;
+}
+
+
+footer{
+    background: black;
+    clear: both;
+    position: fixed;
+    height: 46px;
+    overflow: hidden;
+    display: block;
+    bottom: 0;
+    width: 100%; /* add this rule */
+    padding: 10px;
+}
+
+footer p, footer h1{
+    color: white;
+    display: inline;
+}
+
+footer p{
+    float: right;
+}
+
+.content-area{
+    background: white;
+}
+
+table{
+    margin: 0 auto;
+    background: grey;
+    padding: 10px;
+}
+
+
