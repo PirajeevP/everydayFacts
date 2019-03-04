@@ -5,59 +5,148 @@
 -->
 
 <head>
-        <title>EverydayFacts</title>
-        <link href="css/style.css" type="text/css" rel="stylesheet">
-    </head>
-    
-    
-    <body>
-            <nav>
-                    <div class="top">
-                        <img id="logo" src="images/Logo.png">
-                        <ul>
-                            <li><a href="signup.html" id="sign-up">Sign Out</a></li>
-                            <li><a href="dashboard.html">My Facts</a></li>
-                            <li><a href="index.html">Home</a></li>
-            
-                        </ul>
-                    </div>
-                </nav>
-    
-    
-        <div class="content-area">
-            <h1>Dashboard</h1>
-            <button class="button">Create New</button>
-    
-            <div class="filter-options">
-                <button class="button">Apply</button>
-                <button class="button">Category</button>
-                <input type="text" placeholder="Search">
-                <button class="button">Search</button>
+    <title>EverydayFacts</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+</head>
+
+
+<body>
+    <nav>
+        <div class="top">
+            <img id="logo" src="images/Logo.png">
+            <ul>
+                <li><a href="index.html" id="sign-up">Sign Out</a></li>
+                <li><a href="dashboard.html">My Facts</a></li>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="content-area">
+        <div class="row">
+            <div class="column">
+                <h1>Dashboard</h1>
             </div>
-    
-            <div class="dashboard">
-                <table>
-                    <tr>
-                        <th>[]</th>
-                        <th>Title</th>
-                        <th>Category</th>
-                        <th>Date</th>
-                        <th>Rank</th>
-                    </tr>
-                    <tr>
-                        <td>[]</td>
-                        <td>Lorem ipsum</td>
-                        <td>Category</td>
-                        <td>01-01-2019</td>
-                        <td>63</td>
-                    </tr>
-                </table>
+            <div id="create-new-col" class="column">
+                <button id="create-new" class="dashboard-button">Create New</button>
             </div>
         </div>
-    
-    </body>
-    <footer>
-        <h1>Everyday Facts</h1>
-        <p>Made by Michelle & Pirajeev</p>
-    </footer>
+
+        <div class="row">
+            <div class="column">
+                <div class="filter-options">
+                    <select class="apply-options">
+                        <option value="delete">Delete</option>
+                    </select>
+                    <button class="dashboard-button">Apply</button>
+                    <select class="category-options">
+                        <option value="science">Science</option>
+                        <option value="art">Art</option>
+                        <option value="history">History</option>
+                        <option value="literature">Literature</option>
+                    </select>
+                    <button class="dashboard-button">Filter</button>
+                </div>
+            </div>
+
+            <div id="search-area" class="column">
+                <input type="text" placeholder="Search">
+                <button id="search" class="dashboard-button">Search</button>
+
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <div class="row">
+                <div id="dash-col" class="column">
+                    <div class="post-table">
+                        <table id="posts-tbl">
+                            <tr>
+                                <th>[]</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Rank</th>
+                            </tr>
+                            <tr>
+                                <td>[]</td>
+                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
+                                <td>science</td>
+                                <td>01-01-2019</td>
+                                <td>63</td>
+                            </tr>
+                            <tr>
+                                <td>[]</td>
+                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
+                                <td>science</td>
+                                <td>01-01-2019</td>
+                                <td>63</td>
+                            </tr>
+                            <tr>
+                                <td>[]</td>
+                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
+                                <td>science</td>
+                                <td>01-01-2019</td>
+                                <td>63</td>
+                            </tr>
+                            <tr>
+                                <td>[]</td>
+                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
+                                <td>science</td>
+                                <td>01-01-2019</td>
+                                <td>63</td>
+                            </tr>
+                            <tr>
+                                <td>[]</td>
+                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
+                                <td>science</td>
+                                <td>01-01-2019</td>
+                                <td>63</td>
+                            </tr>
+                            <tr>
+                                <td>[]</td>
+                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
+                                <td>science</td>
+                                <td>01-01-2019</td>
+                                <td>63</td>
+                            </tr>
+                            <tr>
+                                <td>[]</td>
+                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
+                                <td>science</td>
+                                <td>01-01-2019</td>
+                                <td>63</td>
+                            </tr>
+                            <tr>
+                                <td>[]</td>
+                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
+                                <td>science</td>
+                                <td>01-01-2019</td>
+                                <td>63</td>
+                            </tr>
+                            <tr>
+                                <td>[]</td>
+                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
+                                <td>science</td>
+                                <td>01-01-2019</td>
+                                <td>63</td>
+                            </tr>
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+</body>
+<footer>
+    <img id="logo-bottom" src="images/Logo-black.png">
+    <p>Made by Michelle & Pirajeev</p>
+</footer>
+
 </html>
