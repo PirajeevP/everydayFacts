@@ -376,16 +376,24 @@ display: inline-block;
 /* Text Editor Changes*/
 .ql-toolbar{
     background-color: white;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 400px;
+    margin-right: 400px;
     margin-top: 20px;
+    border-bottom: none;
+    border-bottom-width: 0%;
 }
 .ql-editor{
     background-color: white;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 400px;
+    margin-right: 400px;
     height: 50px;
+    border-bottom: none;
+    border-bottom-width: 0%;
 
+}
+.ql-toolbar ql-snow{
+    border-bottom: none;
+    border-bottom-width: 0%;
 }
 
 /*Login Page*/
