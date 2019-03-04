@@ -435,3 +435,56 @@ display: inline-block;
         font-weight: 700;
         margin-top: 15px;
     }
+
+
+    /* Dashboard */
+
+   .dashboard-button{
+    background-color: #15C1F2 !important;
+    border: none;
+    color: white;
+    padding: 8px 39px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.dashboard-buttons a{
+    text-align: center;
+}
+
+#create-new{
+    width: 150px;
+    float:right;
+}
+
+#create-new-col{
+    align-items:flex-end;
+}
+
+#apply-col{
+    align-items: center;
+    background-color: white;
+}
+
+#search-area{
+align-items: flex-end;
+}
+
+.post-table td, tr{
+padding: 10px;
+margin-top: 10px;
+}
+
+.post-table{
+background-color: white;
+border-style: solid;
+border-width: 1px;
+border-color: #E8E8E8;
+background-color: white;
+}
+
+#posts-tbl{
+padding: 10px;
+margin: 10px;
+}
