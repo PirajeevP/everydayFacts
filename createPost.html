@@ -1,55 +1,58 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script type="text/javascript" src="formCheck.js"></script>
-<title>Post</title>
+    <title>Post</title>
 </head>
+
 <body>
-        <nav>
-                <div class="top">
-                    <h1>EverydayFacts</h1>
-                    <ul>
-                        <li><a>Home</a></li>
-                        <li><a>My Facts</a></li>
-                        <li><a>SignUp</a></li>
-                    </ul>
-                </div>
-            </nav>
-<div class = "forgotF">
+    <nav>
+        <div class="top">
+            <img id="logo" src="images/Logo.png">
+            <ul>
+                <li><a href="signup.html" id="sign-up">Sign Up</a></li>
+                <li><a href="index.html">Home</a></li>
+
+            </ul>
+        </div>
+    </nav>
+    <div class="forgotF">
 
 
-<h1>Add New Fact</h1>
-<form name = "login">
-        <input id = "title" type="text" name="Title" placeholder="Title"><br>
-        Categories: 
-        <select name="cars">
+        <h1>Add New Fact</h1>
+        <form name="login">
+            <input id="title" type="text" name="Title" placeholder="Title"><br>
+            Categories:
+            <select name="cars">
                 <option value="Science">Science</option>
                 <option value="Art">Art</option>
                 <option value="Literature">Literature</option>
                 <option value="History">History</option>
                 <option value="Mathematics">Mathematics</option>
                 <option value="Other">Other</option>
-              </select>
-</form>
-<div id="editor">
-    Enter Text Here
-    </div>
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+            </select>
+        </form>
+        <div id="editor">
+            Enter Text Here
+        </div>
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
-<!-- Initialize Quill editor -->
-<script>
-  var quill = new Quill('#editor', {
-    theme: 'snow'
-  });
-</script>
-    <button class = "button" >Publish</button></th>
-</div>
-    <div class ="errobox" id = "ero"> </div>
+        <!-- Initialize Quill editor -->
+        <script>
+            var quill = new Quill('#editor', {
+                theme: 'snow'
+            });
+        </script>
+        <button class="button">Publish</button></th>
+    </div>
+    <div class="errobox" id="ero"> </div>
     <footer>
-            <h1>Everyday Facts</h1>
-            <p>Made by Michelle & Pirajeev</p>
-        </footer>
+        <img id="logo-bottom" src="images/Logo-black.png">
+        <p>Made by Michelle & Pirajeev</p>
+    </footer>
 </body>
+
 </html>
