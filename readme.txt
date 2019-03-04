@@ -15,3 +15,7 @@ prab6270@mylaurier.ca
 Github Link
 ----------
 https://github.com/pirajeev1323/everydayFacts?fbclid=IwAR2GZ7irkKspizrVrZVK06gWVABbauGnONGRzs9eTzehPANRfbnU40nl3wA
+
+Notes
+-------
+Edit Post page and search bar has not been implemented.
