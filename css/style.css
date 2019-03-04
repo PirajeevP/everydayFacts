@@ -252,21 +252,30 @@ display: inline;
 /* Text Editor Changes*/
 .ql-toolbar{
     background-color: white;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
 }
 .ql-editor{
     background-color: white;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 50px;
+
 }
 /*Login Page*/
     .loginF{
+        margin-top: 80px;
         text-align: center;
     }
     .loginF input{
         padding: 10px;
         height: 20px;
-        width: 50%;
+        width: 30%;
         margin-top: 5px;
     }
     .loginF button{
+        margin-top: 10px;
         padding: 10px 20px;
         text-decoration: none;
         background-color: dodgerblue;
@@ -275,13 +284,15 @@ display: inline;
     }
 /* Forgot Page */
     .forgotF{
+        margin-top: 80px;
         text-align: center;
     }
     .forgotF input{
         padding: 10px;
         height: 20px;
-        width: 50%;
+        width: 30%;
         margin-top: 5px;
+        margin-bottom: 10px;
     }
     .forgotF button{
         padding: 10px 20px;
@@ -289,5 +300,5 @@ display: inline;
         background-color: dodgerblue;
         font-size: 15px;
         font-weight: 700;
-        margin-top: 10px;
+        margin-top: 15px;
     }
