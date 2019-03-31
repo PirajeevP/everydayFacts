@@ -10,3 +10,17 @@ body{
     color: white;
     text-align: center;
   }
+  
+  .ql-toolbar{
+    background-color: white;
+
+}
+.ql-editor{
+    background-color: white;
+
+
+}
+.ql-toolbar ql-snow{
+    border-bottom: none;
+
+}
