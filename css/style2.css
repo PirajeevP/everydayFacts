@@ -1,26 +1,14 @@
 body{
     background-color: #f5fafd;
+    padding-bottom: 50px;
 }
 
 .footer {
     position: fixed;
     left: 0;
-    bottom: 0;
+    bottom: 0; 
     width: 100%;
     color: white;
     text-align: center;
-  }
-  
-  .ql-toolbar{
-    background-color: white;
+  } 
 
-}
-.ql-editor{
-    background-color: white;
-
-
-}
-.ql-toolbar ql-snow{
-    border-bottom: none;
-
-}

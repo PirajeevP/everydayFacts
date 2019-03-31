@@ -10,8 +10,7 @@ if ( isset( $_SESSION['userID'])) {
     $a = $_SESSION['userID'];
     $result = getPosts($a);
 } else {
-    // Redirect them to the login page
-    header("Location: http://www.yourdomain.com/login.php");
+    echo "this is session id: " . $_SESSION['userID'];
 }
 
 ?>
