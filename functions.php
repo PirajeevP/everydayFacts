@@ -116,10 +116,10 @@ function SignUp($username, $password){
     Defines functions for user dashboard
 */
 function getPosts($userID){
-    // Make Database Connection
+    # Make Database Connection
     $db = getDB();
 
-    // Retrieve posts that belong to user
+    # Retrieve posts that belong to user
     $statement = "SELECT p.PostID, p.Title, p.PostDate, c.Type, SUM(r.Number) as 'Rank' FROM Rank r 
     INNER JOIN Post p 
     INNER JOIN Users u 
@@ -135,34 +135,40 @@ function getPosts($userID){
     $result = mysqli_stmt_get_result($statement);
     $numberofrows = mysqli_num_rows($result);
 
-    // Return result
     return $result;
 }
 
 
 function getAll(){
+    # establish database connection
     $db = getDB();
 
-    $statement = "SELECT p.PostID, u.UserName, p.PostID, p.Title, DATE_FORMAT(p.PostDate, '%m/%d/%y') AS 'P', c.Type, SUM(r.Number) as 'RANK' 
+    # get SQL query + Bind Parameters
+    $statement = "SELECT u.UserID, p.PostID, u.UserName, p.PostID, p.Title, DATE_FORMAT(p.PostDate, '%m/%d/%y') AS 'P', c.Type, SUM(r.Number) as 'RANK' 
     FROM Rank r 
     INNER JOIN Post p INNER JOIN Users u 
     INNER JOIN Category c ON u.UserID = p.UserID 
     AND p.CategoryID = c.CategoryID AND p.PostID = r.PostID 
     GROUP BY p.PostID ORDER BY RANK DESC";
     $statement = mysqli_prepare($db, $statement);
-    // mysqli_stmt_bind_param($statement,'i',$userID);
     mysqli_stmt_execute($statement);
     $result = mysqli_stmt_get_result($statement);
     $numberofrows = mysqli_num_rows($result);
 
-    // Return result
     return $result;
 }
 
+
+/* 
+    These are SQL functions for filling up data for a single post page
+*/
+
 function fillPost($postID){
+    # establish database connection
     $db = getDB();
 
-    $statement = "SELECT p.PostID, u.UserName, p.PostID, p.Title, DATE_FORMAT(p.PostDate, '%m/%d/%y') AS 'P', c.Type, SUM(r.Number) as 'RANK' 
+    # get SQL query + Bind Parameters
+    $statement = "SELECT u.UserName, p.PostID, p.Title, DATE_FORMAT(p.PostDate, '%m/%d/%y') AS 'P', c.Type, SUM(r.Number) as 'RANK' 
     FROM Rank r 
     INNER JOIN Post p INNER JOIN Users u 
     INNER JOIN Category c ON u.UserID = p.UserID 
@@ -173,9 +179,45 @@ function fillPost($postID){
     mysqli_stmt_execute($statement);
     $result = mysqli_stmt_get_result($statement);
     $numberofrows = mysqli_num_rows($result);
-    echo $numberofrows;
-    // Return result
+   
     return $result;
 }
+
+function getComments($postID){
+    # establish database connection
+    $db = getDB();
+
+    # get SQL query + Bind Parameters
+    $statement = "SELECT c.Comment, c.UserID, DATE_FORMAT(c.CommentDate, '%m/%d/%y') AS 'P', u.UserName 
+    FROM Comments c INNER JOIN Post p INNER JOIN Users u 
+    ON p.PostID = c.PostID AND u.UserID = c.UserID WHERE p.PostID = ?";
+    $statement = mysqli_prepare($db, $statement);
+    mysqli_stmt_bind_param($statement,'i',$postID);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    $numberofrows = mysqli_num_rows($result);
+
+
+    return $result;
+}
+
+function getRank($postID){
+    # establish database connection
+    $db = getDB();
+
+    # get SQL query + Bind Parameters
+    $statement = "SELECT u.UserID, p.PostID, SUM(r.Number) as 'RANK' FROM Rank r 
+    INNER JOIN Post p INNER JOIN Users u ON p.PostID = r.PostID AND u.UserID = p.UserID WHERE p.PostID = ? GROUP BY p.PostID";
+    $statement = mysqli_prepare($db, $statement);
+    mysqli_stmt_bind_param($statement,'i',$postID);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    $numberofrows = mysqli_num_rows($result);
+
+    return $result;
+}
+
+
 ?>
+
 

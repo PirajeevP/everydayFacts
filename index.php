@@ -7,7 +7,13 @@ session_start();
 
 $result = getAll();
 
-echo "this is session id: " . $_SESSION['userID'];
+// echo "this is session id: " . $_SESSION['userID'];
+
+// echo '<pre>';
+// var_dump($_SESSION);
+// echo '</pre>';
+
+
 
 
 ?>
@@ -47,9 +53,27 @@ echo "this is session id: " . $_SESSION['userID'];
                             </div>
                             <div class = "col-md-1 text-center bg-light">
                                 <div class = "mt-2">
-                                    <img width="20" src="./images/thumb-down.png" class="img-fluid" alt="">
+                                    <?php
+                                        $data = array(
+                                            'id' => $row["PostID"],
+                                            'vote' => "1",
+                                            'user' => $row["UserID"],
+                                        );
+                                    ?>
+                                    <a href = "updownVote.php?<?php echo http_build_query($data,'', '&');?>">
+                                        <img width="20" src="./images/thumb-up.png" class="img-fluid" alt="">
+                                    </a>
                                     <p class = "mt-3"><?php echo $row["RANK"]?></p>
-                                    <img width="20" src="./images/thumb-up.png" class="img-fluid" alt="">
+                                    <?php
+                                        $data2 = array(
+                                            'id' => $row["PostID"],
+                                            'vote' => "0",
+                                            'user' => $row["UserID"],
+                                        );
+                                    ?>
+                                    <a href = "updownVote.php?<?php echo http_build_query($data2,'', '&');?>">
+                                        <img width="20" src="./images/thumb-down.png" class="img-fluid" alt="">
+                                    </a>
                                 </div>
                             </div>
                         </div>    

@@ -13,6 +13,14 @@ if ( isset( $_SESSION['userID'])) {
     echo "this is session id: " . $_SESSION['userID'];
 }
 
+if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
+    $deleteIds = $_POST['checkbox'];   // it will be an array
+    // $sql = "DEFRE FROM tablename WHERE id in (".implode("," , $deleteIds).") ";
+ 
+    // // run the query
+    echo $deleteIds;
+ }
+
 ?>
 
 <html>
@@ -34,7 +42,7 @@ if ( isset( $_SESSION['userID'])) {
                         <select class = "mr-2 custom-select">
                             <option selected>Delete</option>
                         </select>
-                        <button type="button" class="btn btn-primary">Apply</button>
+                        <input type="submit" class="btn btn-primary">Apply</button>
 
                         <select class = "ml-2 mr-2 custom-select tx">
                             <option selected>Category</option>
@@ -77,7 +85,7 @@ if ( isset( $_SESSION['userID'])) {
                         ?>
                         <tr> 
                         <th scope="row">
-                             <input type="checkbox" aria-label="Checkbox for following text input">
+                             <input name = "checkbox[]" value="<?php echo $row["PostID"];?>" type="checkbox" aria-label="Checkbox for following text input">
                         </th>
                         <td><?php echo $row["Title"];?></td>
                         <td><?php echo $row["Type"];?></td>

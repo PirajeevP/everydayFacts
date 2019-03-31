@@ -6,8 +6,11 @@ include 'functions.php';
 session_start();
 
 $id = $_GET["id"];
-
 $result = fillPost($id);
+
+$comments_result = getComments($id);
+$rank_result = getRank($id);
+
 ?>
 
 <html>
@@ -50,25 +53,60 @@ $result = fillPost($id);
                     <div class = "p-3 mt-3 user-post bg-white border border-light shadow-sm p-3 mb-5">
                         <!-- PULL FROM DATABASE THE COMMENTS.. -->
                         <h2>Discussion</h2>
-                        <p class="float-left">user</p>
-                        <p class="float-right">01/01/2019</p>
-                        <p class="d-inline-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non efficitur diam, 
-                            id molestie sapien. Duis sit amet massa posuere, eleifend mauris vel, euismod magna.
-                        </p>
+                        <?php
+                        if (mysqli_num_rows($comments_result) > 0) {
+                            while($row = mysqli_fetch_array($comments_result)) {
+                        ?>
+                            <p class="float-left"><b><?php echo $row["UserName"];?></b></p>
+                            <p class="float-right"><?php echo $row["P"];?></p>
+                            <p class="d-inline-block"><?php echo $row["Comment"];?></p>
                         <hr> <!-- horizontal line -->
+                        <?php
+                            }
+                        } else {
+                        echo ("No Posts");
+                        }
+                        ?>
                     </div>
                 </div>
                 <div class = "col-md-2">
-                
+                    <?php
+                        if (mysqli_num_rows($rank_result) > 0) {
+                            while($row = mysqli_fetch_array($rank_result)) {
+                    ?>
                     <div class = "text-center p-3 rank-area bg-white border border-light shadow-sm p-3 mb-5">
                         <p>RANK</p>
                         <h2><?php echo $row["RANK"];?></p>
                     </div>
                     <div class = "p-3 text-center mt-3 rating-area bg-white border border-light shadow-sm p-3 mb-5">
-                        <img width = "50" class = "img-fluid" src="./images/thumb-up.png">
+                        <?php
+                            $data = array(
+                               'id' => $row["PostID"],
+                               'vote' => "1",
+                              'user' => $row["UserID"],
+                            );
+                        ?>
+                        <a href = "updownVote-Post.php?<?php echo http_build_query($data,'', '&');?>">
+                            <img width="50" src="./images/thumb-up.png" class="img-fluid" alt="">
+                        </a>
                         <p class = "mt-3"><?php echo $row["RANK"];?></p>
-                        <img width = "50" class = "img-fluid" src="./images/thumb-down.png">
+                        <?php
+                                        $data2 = array(
+                                            'id' => $row["PostID"],
+                                            'vote' => "0",
+                                            'user' => $row["UserID"],
+                                        );
+                                    ?>
+                                    <a href = "updownVote-Post.php?<?php echo http_build_query($data2,'', '&');?>">
+                                        <img width="50" src="./images/thumb-down.png" class="img-fluid" alt="">
+                                    </a>
                     </div>
+                    <?php
+                            }
+                        } else {
+                        echo ("No Posts");
+                        }
+                        ?>
                 </div>
                 ...
             </div>
