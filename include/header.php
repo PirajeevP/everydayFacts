@@ -3,6 +3,8 @@
 
 <?php
 session_start(); 
+
+echo "[testing purposes] This is User ID: "  . $_SESSION['userID'];
 ?>
 <!-- This file contains the header for each page for navigation -->
     <head>
@@ -40,7 +42,7 @@ session_start();
 
                 <?php
                     if ( isset( $_SESSION['userID'])) {
-                        $a = $_SESSION['userID'];
+                        
                 ?>
                     <li class="nav-item">
                         <a class="nav-link" href="dashboard.php">My Facts</a>
