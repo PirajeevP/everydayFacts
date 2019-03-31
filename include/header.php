@@ -15,7 +15,7 @@
         <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
         <!-- other css -->
         <link href="css/style2.css" type="text/css" rel="stylesheet">
-
+        <script type="text/javascript" src="js/formCheck.js"></script>
         <title>EverydayFacts</title>
     </head>
 
