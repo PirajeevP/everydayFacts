@@ -9,6 +9,7 @@ $result = getAll();
 
 echo "this is session id: " . $_SESSION['userID'];
 
+
 ?>
 
 <html>
