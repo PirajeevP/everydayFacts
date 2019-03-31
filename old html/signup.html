@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/formCheck.js"></script>
+    <title>Login</title>
+</head>
+
+<body>
+    <nav>
+        <div class="top">
+            <img id="logo" src="images/Logo.png">
+            <ul>
+                <li><a href="login.html" id="log-in">Log In</a></li>
+                <li><a href="dashboard.html">My Facts</a></li>
+                <li><a href="index.html">Home</a></li>
+
+            </ul>
+        </div>
+    </nav>
+    <div class="forgotF">
+        <h1>Create a Free EverydayFacts Account</h1>
+        <form name="signUp">
+            <input id="user" type="text" name="username" placeholder="Username"><br>
+            <input id="pass" type="text" name="password" placeholder="Password"><br>
+            <input id="passConf" type="text" name="passwordConf" placeholder="Confirm Password"><br>
+            <input id="emailAdd" type="text" name="emailAdd" placeholder="Email"><br>
+            <input id="emailConfirm" type="text" name="emailConfirm" placeholder="Confirm Email"><br>
+        </form>
+        <button class="button" onclick="return validateSignUp()">Sign me up</button></th>
+        <p>By clicking "Sign Up" you agree to EveryDay Facts Terms of Service</p>
+    </div>
+    <div class="errobox" id="ero"> </div>
+    <footer>
+            <img id="logo-bottom" src="images/Logo-black.png">
+            <p>Made by Michelle & Pirajeev</p>
+        </footer>
+</body>
+
+</html>
