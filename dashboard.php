@@ -1,6 +1,18 @@
 <?php
 
 include 'include/header.php';
+include 'functions.php';
+
+session_start();
+
+
+if ( isset( $_SESSION['userID'])) {
+    $a = $_SESSION['userID'];
+    $result = getPosts($a);
+} else {
+    // Redirect them to the login page
+    header("Location: http://www.yourdomain.com/login.php");
+}
 
 ?>
 
@@ -60,17 +72,26 @@ include 'include/header.php';
                     </thead>
                     <tbody>
                         <!-- one row -->
+                        <?php
+                        if (mysqli_num_rows($result) > 0) {
+                            while($row = mysqli_fetch_array($result)) {
+                        ?>
                         <tr> 
                         <th scope="row">
                              <input type="checkbox" aria-label="Checkbox for following text input">
                         </th>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                        <td>Science</td>
-                        <td>01-01-2019</td>
-                        <td>1</td>
+                        <td><?php echo $row["Title"];?></td>
+                        <td><?php echo $row["Type"];?></td>
+                        <td><?php echo $row["PostDate"];?></td>
+                        <td><?php echo $row["Rank"];?></td>
                         </tr>
 
-                        
+                        <?php
+                            }
+                        } else {
+                            echo ("No Posts");
+                        }
+                        ?>
                     </tbody>
                 </table>
                 </div>

@@ -1,6 +1,11 @@
 <?php
 
 include 'include/header.php';
+include 'functions.php';
+
+session_start();
+
+$result = getAll();
 
 ?>
 
@@ -11,6 +16,10 @@ include 'include/header.php';
                 
                 <!-- first column -->
                 <div class = "col-md-6">
+                <?php
+                        if (mysqli_num_rows($result) > 0) {
+                            while($row = mysqli_fetch_array($result)) {
+                        ?>
                     <!-- POST -->
                     <div class="card mt-3 bg-white border border-light shadow-sm mb-5">
                         <div class="row no-gutters">
@@ -19,21 +28,24 @@ include 'include/header.php';
                             </div>
                             <div class="col">
                                 <div class="card-block ml-2 mt-2 mr-2 px-2">
-                                    <a href="post.php" class="card-link">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eros augue, pharetra a lacus eu</a>
+                                    <a href="post.php?id=<?php echo $row["PostID"];?>"
+                                    class="card-link">
+                                    <?php echo $row["Title"]?>
+                                    </a>
                                 </div>
 
                                 <div class="card-block ml-2 mr-2 mt-2 px-2">
                                     <div class = "mt-3">
-                                        <p class="card-text d-inline">USER</p>
-                                        <p class="card-text d-inline">03/03/2019</p>
-                                        <p class="card-text float-right">CATEGORY</p>
+                                        <p class="card-text d-inline"><?php echo $row["UserName"];?></p>
+                                        <p class="card-text d-inline"><?php echo $row["P"];?></p>
+                                        <p class="card-text float-right"><?php echo $row["Type"];?></p>
                                     </div>
                                 </div>
                             </div>
                             <div class = "col-md-1 text-center bg-light">
                                 <div class = "mt-2">
                                     <img width="20" src="./images/thumb-down.png" class="img-fluid" alt="">
-                                    <p class = "mt-3">123</p>
+                                    <p class = "mt-3"><?php echo $row["RANK"]?></p>
                                     <img width="20" src="./images/thumb-up.png" class="img-fluid" alt="">
                                 </div>
                             </div>
@@ -44,13 +56,19 @@ include 'include/header.php';
                      <!-- POST -->
                    
                      <!-- POST END -->
+                     <?php
+                            }
+                        } else {
+                            echo ("No Posts");
+                        }
+                        ?>
                 </div>
 
                 <!-- second column -->
 
                 <div class = "col-md-6">
                     <!-- POST -->
-                    
+                 
                      <!-- POST END -->
 
                      <!-- POST -->
