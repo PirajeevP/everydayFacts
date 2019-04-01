@@ -12,3 +12,12 @@ body{
     text-align: center;
   } 
 
+  .vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+p{
+    font-size: 12px;
+}

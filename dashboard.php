@@ -31,7 +31,7 @@ if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
                     <h2> Dashboard </h2>
                 </div>
                 <div class = "col-md-10">
-                    <button type="button" class="btn btn-primary float-right">Create New</button>
+                    <a href = "createPost.php" class="btn btn-primary float-right">Create New</a>
                 </div>
             </div>
 
@@ -42,7 +42,7 @@ if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
                         <select class = "mr-2 custom-select">
                             <option selected>Delete</option>
                         </select>
-                        <input type="submit" class="btn btn-primary">Apply</button>
+                        <input type="submit" value = "Apply" class="btn btn-primary">
 
                         <select class = "ml-2 mr-2 custom-select tx">
                             <option selected>Category</option>

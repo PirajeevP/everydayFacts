@@ -190,13 +190,13 @@ function getComments($postID){
     # get SQL query + Bind Parameters
     $statement = "SELECT c.Comment, c.UserID, DATE_FORMAT(c.CommentDate, '%m/%d/%y') AS 'P', u.UserName 
     FROM Comments c INNER JOIN Post p INNER JOIN Users u 
-    ON p.PostID = c.PostID AND u.UserID = c.UserID WHERE p.PostID = ?";
+    ON p.PostID = c.PostID AND u.UserID = c.UserID WHERE p.PostID = ? 
+    ORDER BY c.CommentDate DESC";
     $statement = mysqli_prepare($db, $statement);
     mysqli_stmt_bind_param($statement,'i',$postID);
     mysqli_stmt_execute($statement);
     $result = mysqli_stmt_get_result($statement);
     $numberofrows = mysqli_num_rows($result);
-
 
     return $result;
 }
@@ -215,6 +215,22 @@ function getRank($postID){
     $numberofrows = mysqli_num_rows($result);
 
     return $result;
+}
+
+function newComment($postID,$userID,$comment){
+      # establish database connection
+      $db = getDB();
+
+      # INSERT NEW COMMENT into COMMENTS Table + Bind Parameters
+      $statement = "INSERT INTO Comments (PostID, UserID, Comment) VALUES ($postID,$userID,'$comment')";
+  
+      # IF INSERT SUCCESSFUL, GO BACK TO POST. ELSE, SIGN UP BECAUSE NOT LOGGED IN. 
+      if (mysqli_query($db,$statement)){ 
+            $string = "post.php?id=" .$postID; 
+            header("Location: ". $string);
+    } else {
+            header("Location: signup.php");
+    };
 }
 
 

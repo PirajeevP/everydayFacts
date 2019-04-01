@@ -32,27 +32,28 @@ $result = getAll();
                     <!-- POST -->
                     <div class="card mt-3 bg-white border border-light shadow-sm mb-5">
                         <div class="row no-gutters">
-                            <div class="col-auto">
-                                <img width="130" src="./images/hamster.jpg" class="img-fluid" alt="">
+                            <div class="col-auto p-4">
+                                <img width="130" src="./images/hamster.jpg" class="img-fluid img-thumbnail" alt="">
                             </div>
                             <div class="col">
-                                <div class="card-block ml-2 mt-2 mr-2 px-2">
+                                <div class="card-block mt-4 px-2">
                                     <a href="post.php?id=<?php echo $row["PostID"];?>"
                                     class="card-link">
                                     <?php echo $row["Title"]?>
                                     </a>
                                 </div>
 
-                                <div class="card-block ml-2 mr-2 mt-2 px-2">
+                                <div class="card-block mr-2 mt-2 px-2 mb-3">
                                     <div class = "mt-3">
-                                        <p class="card-text d-inline"><?php echo $row["UserName"];?></p>
+                                        <b><p class="card-text d-inline"><?php echo $row["UserName"];?></p></b> • 
                                         <p class="card-text d-inline"><?php echo $row["P"];?></p>
                                         <p class="card-text float-right"><?php echo $row["Type"];?></p>
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class = "col-md-1 text-center bg-light">
-                                <div class = "mt-2">
+                                <div class = "mt-4">
                                     <?php
                                         $data = array(
                                             'id' => $row["PostID"],

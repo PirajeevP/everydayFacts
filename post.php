@@ -6,10 +6,24 @@ include 'functions.php';
 session_start();
 
 $id = $_GET["id"];
-$result = fillPost($id);
+// echo "postID: " . $id;
 
+$user = $_SESSION['userID'];
+// echo "user: " . $user;
+
+$comment = $_POST['user-comment'];
+// echo "comment: " . $comment;
+
+$result = fillPost($id);
 $comments_result = getComments($id);
 $rank_result = getRank($id);
+
+if (!empty($_POST)){
+    if ( isset( $_POST['user-comment'] )){
+        echo "there's stuff in the comment!";
+        newComment($id,$user,$comment);
+    } 
+}
 
 ?>
 
@@ -25,8 +39,8 @@ $rank_result = getRank($id);
                     <div class = "p-3 user-post bg-white border border-light shadow-sm p-3 mb-5">
                         <p class = "float-left"><?php echo $row["UserName"];?></p>
                         <p class="float-right"><?php echo $row["P"];?></p>
-                        <div class = "mt-5">
-                            <img width="200" class = "img-fluid" src = "./images/hamster.jpg">
+                        <div class = "mt-5 text-center">
+                            <img width="200" class = "img-fluid img-thumbnail" src = "./images/hamster.jpg">
                             <h3 class = "mt-3"><?php echo $row["Title"];?></h3>
                             <p> SAMPLE TEXT SAMPLE TEXT SAMPLE PARAGRAPH TEXT </p>
                         </div>
@@ -42,12 +56,14 @@ $rank_result = getRank($id);
 
                     <div class = "p-3 mt-3 user-post bg-white border border-light shadow-sm p-3 mb-5">
                         <h2>Join the discussion</h2>
+                       <form action ="" method = "post" name="new-comment">
                         <div class = "form-group">
                             <textarea class="form-control" id="comment-textbox" name="user-comment"></textarea>
                         </div>
                         <div class = "text-right">
-                            <button type="button" class="btn btn-success">Submit</button>
+                            <button name = "comment-submit" type="Submit" class="btn btn-success">Submit</button>
                         </div>
+                        </form>
                     </div>
 
                     <div class = "p-3 mt-3 user-post bg-white border border-light shadow-sm p-3 mb-5">
@@ -57,9 +73,11 @@ $rank_result = getRank($id);
                         if (mysqli_num_rows($comments_result) > 0) {
                             while($row = mysqli_fetch_array($comments_result)) {
                         ?>
-                            <p class="float-left"><b><?php echo $row["UserName"];?></b></p>
+                            <div class = "user-info d-inline-block">
+                                <p class="float-left"><b><?php echo $row["UserName"];?></b></p>
+                            </div>
                             <p class="float-right"><?php echo $row["P"];?></p>
-                            <p class="d-inline-block"><?php echo $row["Comment"];?></p>
+                            <p class="d-block"><?php echo $row["Comment"];?></p>
                         <hr> <!-- horizontal line -->
                         <?php
                             }
@@ -108,7 +126,6 @@ $rank_result = getRank($id);
                         }
                         ?>
                 </div>
-                ...
             </div>
         </div>
 
