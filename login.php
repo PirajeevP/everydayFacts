@@ -8,15 +8,18 @@ $query = "SELECT * FROM Users";
 $result = runQuery($db, $query);
 
 session_start();
-$username = $_POST['username'];
-$password = $_POST['password'];
+// $username = $_POST['username'];
+// $password = $_POST['password'];
 
-if (!empty($_POST)){
-    if ( isset( $_POST['username'] ) && isset( $_POST['password'] ) ) {
-        echo "hey";
-        LogIn($username,$password);
-    } 
-}
+// if (!empty($_POST)){
+//     if ( isset( $_POST['username'] ) && isset( $_POST['password'] ) ) {
+//         echo "hey";
+//         // LogIn($username,$password);
+//     } 
+// }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +33,7 @@ if (!empty($_POST)){
             </div>
             <div class = "col-md-4 text-center">
                 <h1> Login Page </h1>
-                    <form  action="" method="post" name="login">
+                    <form action="processing.php" method="post" name="login" onsubmit = "return validateLogIn()" >
                         <div class = "form-group mt-4">
                         <input type="text" class="form-control" name ="username" placeholder="Username">
                         </div>
@@ -42,6 +45,11 @@ if (!empty($_POST)){
                     <div class = "mt-4">
                         <a href = "forgetPassword.html">Forgot your password?</a>
                         <div class="errobox" id="ero"> </div>
+                        <?php
+                            if (isset($_GET["msg"]) && $_GET["msg"] == 'failed') {
+                                echo "Wrong Username / Password";
+                                }
+                        ?>
                     </div>
             </div>
             <div class = "col">

@@ -5,14 +5,30 @@ include 'functions.php';
 
 session_start();
 
+#Load Categories
+$fillCat = getCategories();
 
-if ( isset( $_SESSION['userID'])) {
+echo "Testing.. This is CategoryID: " . $_POST["sel-category"];
+
+# if USERID is SET and CATEGORY is SET THEN FILTER
+if ( isset( $_SESSION['userID'],$_POST["sel-category"])) {
+    $a = $_SESSION['userID'];
+    $cat = $_POST["sel-category"];
+
+    # IF categoryID != 0. get filtered posts.. ELSE get ALL 
+    # because no category is selected.. 
+    if ($cat != 0){
+        $result = filter($cat,$a);
+    } else {
+        $a = $_SESSION['userID'];
+        $result = getPosts($a);
+    }
+} else {
     $a = $_SESSION['userID'];
     $result = getPosts($a);
-} else {
-    echo "this is session id: " . $_SESSION['userID'];
 }
 
+# for delete.. but DOES NOT WORK YET
 if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
     $deleteIds = $_POST['checkbox'];   // it will be an array
     // $sql = "DEFRE FROM tablename WHERE id in (".implode("," , $deleteIds).") ";
@@ -20,6 +36,8 @@ if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
     // // run the query
     echo $deleteIds;
  }
+
+
 
 ?>
 
@@ -38,20 +56,31 @@ if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
             <!-- Filter Options -->
             <div class = "row mt-5">
                 <div class = "col-md-6">
+                <form method="post">
                     <div class = "form-inline">
                         <select class = "mr-2 custom-select">
                             <option selected>Delete</option>
                         </select>
                         <input type="submit" value = "Apply" class="btn btn-primary">
 
-                        <select class = "ml-2 mr-2 custom-select tx">
-                            <option selected>Category</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select name = "sel-category" class = "ml-2 mr-2 custom-select tx">
+                            <option value ="0" selected>Category</option>
+                            <?php
+                        if (mysqli_num_rows($fillCat) > 0) {
+                            while($row = mysqli_fetch_array($fillCat)) {
+                        ?>
+                            <option value="<?php echo $row["CategoryID"];?>"><?php echo $row["Type"];?></option>
+
+                            <?php
+                            }
+                        } else {
+                            echo ("No Posts");
+                        }
+                        ?>
                         </select>
-                        <button type="button" class="btn btn-primary">Filter</button>
+                        <button type="Submit" class="btn btn-primary">Filter</button>
                     </div>
+                    </form>
                 </div>
 
                 <div class = "col-md-6">
@@ -80,6 +109,7 @@ if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
                     <tbody>
                         <!-- one row -->
                         <?php
+
                         if (mysqli_num_rows($result) > 0) {
                             while($row = mysqli_fetch_array($result)) {
                         ?>

@@ -5,10 +5,12 @@ Final Project - EverydayFacts
 Group
 --------
 Michelle Wong 
-
+wong2580@mylaurier.ca
+150652580
 
 Pirajeev Prabaharan
-
+prab6270@mylaurier.ca
+150646270
 
 Github Link
 ----------

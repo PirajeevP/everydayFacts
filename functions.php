@@ -138,6 +138,42 @@ function getPosts($userID){
     return $result;
 }
 
+function getCategories(){
+    # ESTABLISH DATABASE CONNECTION
+    $db = getDB();
+
+    # GET CATEGORIES FROM DB
+    $statement = "SELECT * FROM Category";
+    $statement = mysqli_prepare($db, $statement);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    
+    return $result;
+}
+
+function filter($categoryID, $userID){
+    $db = getDB();
+
+    $statement = "SELECT p.PostID, p.Title, p.PostDate, c.Type, SUM(r.Number) as 'Rank' FROM Rank r 
+    INNER JOIN Post p 
+    INNER JOIN Users u 
+    INNER JOIN Category c 
+    ON u.UserID = p.UserID 
+    AND p.CategoryID = c.CategoryID 
+    AND p.PostID = r.PostID 
+    WHERE u.UserID = ? AND c.CategoryID = ? 
+    GROUP BY p.PostID ORDER BY Rank DESC";
+    $statement = mysqli_prepare($db, $statement);
+    mysqli_stmt_bind_param($statement,'ii',$userID,$categoryID);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    $numberofrows = mysqli_num_rows($result);
+
+    return $result;
+}
+
+
+/* for index.php */
 
 function getAll(){
     # establish database connection
@@ -157,7 +193,6 @@ function getAll(){
 
     return $result;
 }
-
 
 /* 
     These are SQL functions for filling up data for a single post page
@@ -233,7 +268,32 @@ function newComment($postID,$userID,$comment){
     };
 }
 
+/*
+    Pagination Functions
+*/
 
+function pagination($result_per_page){
+    $db = getDB();
+
+    if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; }; 
+    $start_from = ($page-1) * $results_per_page;
+    $statement = "SELECT p.PostID, p.Title, p.PostDate, c.Type, SUM(r.Number) as 'Rank' FROM Rank r 
+    INNER JOIN Post p 
+    INNER JOIN Users u 
+    INNER JOIN Category c 
+    ON u.UserID = p.UserID 
+    AND p.CategoryID = c.CategoryID 
+    AND p.PostID = r.PostID 
+    WHERE u.UserID = ? 
+    GROUP BY p.PostID ORDER BY Rank DESC LIMIT $start_from, $results_per_page";
+
+    $statement = mysqli_prepare($db, $statement);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    $numberofrows = mysqli_num_rows($result);
+
+    return $result;
+}
 ?>
 
 

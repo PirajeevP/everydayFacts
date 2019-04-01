@@ -22,6 +22,9 @@ function validateLogIn(){
     	document.getElementById('ero').innerHTML = e1;
     }
 
+    return y;
+
+
 
 }
 function validateSignUp(){
