@@ -280,7 +280,7 @@ function createNewPost($userID, $title, $categoryID, $text){
         if (!mysqli_query($db,$statement)){
             // fail 
             echo "Create Post: FAILED";
-            header ("Location: modifiedcreatePost.php");
+            header ("Location: createPost.php");
         } else {
             $result = getPostID($userID, $title);
             if (mysqli_num_rows($result)>0){
