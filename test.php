@@ -49,9 +49,6 @@ $numberofrows = mysqli_num_rows($result);
     </table>
 
         <?php 
-    // $sql = "SELECT COUNT(ID) AS total FROM ".$datatable;
-    // $result = $conn->query($sql);
-    // $row = $result->fetch_assoc();
     $statement = "SELECT COUNT(p.PostID) AS total FROM Post p";
     $statement = mysqli_prepare($db, $statement);
     mysqli_stmt_execute($statement);

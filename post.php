@@ -42,7 +42,7 @@ if (!empty($_POST)){
                         <div class = "mt-5 text-center">
                             <img width="200" class = "img-fluid img-thumbnail" src = "./images/hamster.jpg">
                             <h3 class = "mt-3"><?php echo $row["Title"];?></h3>
-                            <p> SAMPLE TEXT SAMPLE TEXT SAMPLE PARAGRAPH TEXT </p>
+                            <p> <?php echo $row["Content"];?> </p>
                         </div>
                     </div>
                     

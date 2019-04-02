@@ -203,7 +203,7 @@ function fillPost($postID){
     $db = getDB();
 
     # get SQL query + Bind Parameters
-    $statement = "SELECT u.UserName, p.PostID, p.Title, DATE_FORMAT(p.PostDate, '%m/%d/%y') AS 'P', c.Type, SUM(r.Number) as 'RANK' 
+    $statement = "SELECT u.UserName, p.PostID, p.Content, p.Title, DATE_FORMAT(p.PostDate, '%m/%d/%y') AS 'P', c.Type, SUM(r.Number) as 'RANK' 
     FROM Rank r 
     INNER JOIN Post p INNER JOIN Users u 
     INNER JOIN Category c ON u.UserID = p.UserID 
@@ -267,6 +267,53 @@ function newComment($postID,$userID,$comment){
             header("Location: signup.php");
     };
 }
+
+/*
+    Create New Post
+*/
+function createNewPost($userID, $title, $categoryID, $text){
+    $db = getDB();
+
+    $statement = "INSERT INTO Post (UserID, Title, CategoryID, Content) VALUES ($userID, '$title', $categoryID, '$text')";
+
+       # IF INSERT SUCCESSFUL, GO BACK TO DASHBOARD. ELSE, GO BACK TO CREATE NEW POST. 
+        if (!mysqli_query($db,$statement)){
+            // fail 
+            echo "Create Post: FAILED";
+            header ("Location: modifiedcreatePost.php");
+        } else {
+            $result = getPostID($userID, $title);
+            if (mysqli_num_rows($result)>0){
+                while ($row = mysqli_fetch_array($result)){
+                $postID = $row['PostID'];
+                echo "this is post ID: " . $postID;
+                $statement = "INSERT INTO Rank (UserID, PostID, Number) VALUES ($userID,$postID,1)";
+            }   
+            mysqli_query($db,$statement);
+            }
+
+            echo "Create Post: SUCESS";
+            header ("Location: dashboard.php");
+        }
+
+
+}
+
+# THIS FUNCTION IS JSUT HELPING THE CREATE POST FUNCTION LOL
+function getPostID($userID, $title){    
+    $db = getDB();
+
+    $statement = "SELECT * FROM Post p INNER JOIN Users u WHERE u.UserID = p.UserID AND p.Title = ?";
+    $statement = mysqli_prepare($db, $statement);
+    mysqli_stmt_bind_param($statement,'s',$title);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    $numberofrows = mysqli_num_rows($result);
+
+    return $result;
+}
+
+
 
 /*
     Pagination Functions

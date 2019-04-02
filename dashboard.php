@@ -37,6 +37,7 @@ if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
     echo $deleteIds;
  }
 
+// pagination(1);
 
 
 ?>
@@ -101,6 +102,7 @@ if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
                         <tr>
                         <th></th>
                         <th>Title</th>
+                        <th>View</th>
                         <th>Category</th>
                         <th>Date</th>
                         <th>Rank</th>
@@ -117,7 +119,8 @@ if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
                         <th scope="row">
                              <input name = "checkbox[]" value="<?php echo $row["PostID"];?>" type="checkbox" aria-label="Checkbox for following text input">
                         </th>
-                        <td><?php echo $row["Title"];?></td>
+                        <td><a href="#"><?php echo $row["Title"];?></a></td>
+                        <td><a href="post.php?id=<?php echo $row["PostID"];?>">View</a></td>
                         <td><?php echo $row["Type"];?></td>
                         <td><?php echo $row["PostDate"];?></td>
                         <td><?php echo $row["Rank"];?></td>

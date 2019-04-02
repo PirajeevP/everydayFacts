@@ -17,21 +17,12 @@ body{
     vertical-align: middle;
     float: none;
 }
-.ql-toolbar{
-    background-color: white;
-    border-bottom: none;
-  
-}
-.ql-editor{
-    background-color: white;
-    border-bottom: none;
-
-
-}
-.ql-toolbar ql-snow{
-    border-bottom: none;
-}
 
 p{
     font-size: 12px;
 }
+
+#quillEditor {
+    height: 180px;
+    overflow: auto;
+  }
