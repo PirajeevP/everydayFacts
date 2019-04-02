@@ -34,23 +34,24 @@ include 'include/header.php';
 
                     <div class = "mt-3 text-edit">
                         <div id="editor">
-                            Enter Text Here
                         </div>
             
                         <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
-                        <!-- Initialize Quill editor -->
-                        <script>
-                            var quill = new Quill('#editor', {
-                            theme: 'snow'
-                        });
-                        </script>
+                             <!-- Initialize Quill editor -->
+                            <script>
+                                var options = {
+                                placeholder: 'Enter Text Here',
+                                theme: 'snow'
+                                };
+                                var quill = new Quill('#editor', options);
+                            </script>
                     </div>
-                
+                    <script>    </script>   
                     <button type="button" class="mt-3 btn btn-secondary">Publish</button>
                 </div>
             </form>
-         <!-- Text Editor -->
+     
         </div>
 
         <div class = "col">
