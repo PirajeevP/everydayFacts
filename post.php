@@ -123,7 +123,7 @@ if (!empty($_POST)){
                     <?php
                             }
                         } else {
-                        echo ("No Posts");
+                        echo ("No Comments.");
                         }
                         ?>
                 </div>
