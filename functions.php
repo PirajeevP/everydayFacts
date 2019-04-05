@@ -198,11 +198,33 @@ function filter($categoryID, $userID){
     return $result;
 }
 
+function search($userID,$field){
+    # ESTABLISH DATABASE CONNECTION
+    $db = getDB();
 
-/* for index.php */
+    # SELECT POSTS THAT BELONG TO THE CATEGORY
+    $statement = "SELECT p.PostID, p.Title, p.PostDate, c.Type, SUM(r.Number) as 'Rank' FROM Rank r 
+    INNER JOIN Post p 
+    INNER JOIN Users u 
+    INNER JOIN Category c 
+    ON u.UserID = p.UserID 
+    AND p.CategoryID = c.CategoryID 
+    AND p.PostID = r.PostID 
+    WHERE u.UserID = ? AND p.Title LIKE"." '%".$field."%'
+    GROUP BY p.PostID ORDER BY Rank DESC";
+    $statement = mysqli_prepare($db, $statement);
+    mysqli_stmt_bind_param($statement,'i',$userID);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    $numberofrows = mysqli_num_rows($result);
+
+    return $result;
+}
+
+/* FOR index.php */
 
 function getAll(){
-    # establish database connection
+    # ESTABLISH DATABASE CONNECTION
     $db = getDB();
 
     # get SQL query + Bind Parameters
@@ -225,10 +247,10 @@ function getAll(){
 */
 
 function fillPost($postID){
-    # establish database connection
+    # ESTABLISH DB CONNECTION
     $db = getDB();
 
-    # get SQL query + Bind Parameters
+    # GET ALL THE POSTS
     $statement = "SELECT u.UserName, p.PostID, p.Content, p.Title, DATE_FORMAT(p.PostDate, '%m/%d/%y') AS 'P', c.Type, SUM(r.Number) as 'RANK' 
     FROM Rank r 
     INNER JOIN Post p INNER JOIN Users u 
@@ -245,10 +267,10 @@ function fillPost($postID){
 }
 
 function getComments($postID){
-    # establish database connection
+    # ESTABLISH DB CONNECTION
     $db = getDB();
 
-    # get SQL query + Bind Parameters
+    # GET COMMENTS THAT MATCH POST ID
     $statement = "SELECT c.Comment, c.UserID, DATE_FORMAT(c.CommentDate, '%m/%d/%y') AS 'P', u.UserName 
     FROM Comments c INNER JOIN Post p INNER JOIN Users u 
     ON p.PostID = c.PostID AND u.UserID = c.UserID WHERE p.PostID = ? 

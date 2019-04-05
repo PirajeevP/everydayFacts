@@ -5,10 +5,10 @@ include 'functions.php';
 
 session_start();
 
-#Load Categories
+# LOAD CATEGORIES
 $fillCat = getCategories();
 
-echo "Testing.. This is CategoryID: " . $_POST["sel-category"];
+// echo "Testing.. This is CategoryID: " . $_POST["sel-category"];
 
 # if USERID is SET and CATEGORY is SET THEN FILTER
 if ( isset( $_SESSION['userID'],$_POST["sel-category"])) {
@@ -28,8 +28,14 @@ if ( isset( $_SESSION['userID'],$_POST["sel-category"])) {
     $result = getPosts($a);
 }
 
+# SEARCH BAR FUNCTIONALITIES 
+if (isset($_POST['searchbar'])){
+    $a = $_SESSION['userID'];
+    $text = $_POST['searchbar'];
+    $result = search($a,$text);
+}
 
-# for delete.. but DOES NOT WORK YET
+# DELETE FUCTIONALITIES
 if (isset($_POST['deleteSubmit'])){
     if (!empty($_POST['checked_id'])){
         $db = getDB();
@@ -37,6 +43,7 @@ if (isset($_POST['deleteSubmit'])){
         deletePost($idStr);
     }
 }
+
 
 ?>
 
@@ -84,7 +91,7 @@ if (isset($_POST['deleteSubmit'])){
 
                 <div class = "col-md-6">
                         <div class = "form-inline float-right">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <input class="form-control mr-sm-2" type="search" name = "searchbar" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </div>
                 </div>

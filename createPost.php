@@ -8,14 +8,15 @@ session_start();
 #Load Categories
 $fillCat = getCategories();
 
+# GET TITLE, CATEGORY, TEXT to update;
 $title = $_POST['title'];
 $category = $_POST["sel-category"];
 $text = $_POST['content-area'];
 
 # THIS IS TESTING.. CAN BE DELETED LATER
-echo "Title: " . $title . "<br>";
-echo "Category: " . $category;
-echo "<br> This is text: " . htmlentities($_POST['content-area']) . "<br>"; 
+// echo "Title: " . $title . "<br>";
+// echo "Category: " . $category;
+// echo "<br> This is text: " . htmlentities($_POST['content-area']) . "<br>"; 
 
 if (!empty($_POST)){
     if ( isset( $_POST['title'],$_POST["sel-category"],$_POST["content-area"])){
@@ -82,34 +83,19 @@ if (!empty($_POST)){
                         
                         var textContent = document.getElementById("textcontent");
 
-                        editor.on('text-change', function(){
-                            var delta = editor.root.innerHTML;
-                            textContent.innerHTML = delta;
+                        // editor.on('text-change', function(){
+                        //     var delta = editor.root.innerHTML;
+                        //     textContent.innerHTML = delta;
                          
-                        });
+                        // });
 
                         $("#identifier").on("submit",function(){
                         // $("#hiddenArea").val($("#quillEditor").html())
                         var delta= editor.root.innerHTML;
                         $("#hiddenArea").val($(delta).html());
                         })
-                        // var quillHtml = editor.root.innerHTML.trim();
                         
-                       
-
-                        // $.ajax({
-                        //     type: "POST",
-                        //     url : "posttesting.php",
-                        //     data: {editorContent : quillHtml },
-                        //     success: function (data,status, xhr)
-                        //     {
-                        //     if(xhr.status == 200) {
-                        //         alert("Successfully sent to database");
-                        //     }
-                        //     },error: function() {
-                        //     alert("Could not send to database");
-                        //     }       
-                        // });
+                    
                         </script>
                     </div>
                 

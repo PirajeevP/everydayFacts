@@ -52,8 +52,8 @@ echo "[testing purposes] This is User ID: "  . $_SESSION['userID'];
                     <li class="nav-item">
                         <a class="nav-link" href="dashboard.php">My Facts</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#!">Post</a>
+                    <li class="nav-item ml-3">
+                        <a class="nav-link" href="createPost.php">New Post</a>
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-primary" href="./logout.php">Log Out</a>
