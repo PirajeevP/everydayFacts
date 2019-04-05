@@ -8,10 +8,9 @@ return them.
 
 function getDB()
 {
-	// connect to database
+	# CONNECT TO DATABASE
 	$conn= mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
 
-	
 	if(!$conn){
 		print "Error- Could not connect to mySQL";
 		exit;
@@ -22,8 +21,7 @@ function getDB()
 
 function runQuery($db, $query) {
 
-    // takes a reference to the DB and a query and returns the 
-    // results of running the query on the database
+    # TAKES A REFERENCE TO THE DB AND THE QUERY AND RETURNS RESULT
 
 	$result = mysqli_query($db,$query);
 	if (mysqli_num_rows($result) > 0){
@@ -35,22 +33,25 @@ function runQuery($db, $query) {
 
 
 /*
+
 Defines functions for users to login or signup.
+
 */
+
 function LogIn($username, $password){
-    // Create a Database Connection
+    # ESTABLISH DB CONNECTION
     $db = getDB();
     
-    // Check if User exists in Database + Bind Parameters
+    # CHECK IF USER EXISTS IN DB 
     $statement = "SELECT * FROM Users WHERE UserName = ?";
     $statement = mysqli_prepare($db, $statement);
     mysqli_stmt_bind_param($statement,'s',$username);
     mysqli_stmt_execute($statement);
     $result = mysqli_stmt_get_result($statement);
 
-    // If User exists, then password will be checked. 
-    // Otherwise, Password will not be checked. 
-    // Note: Password's are hashed for security reasons. 
+    # If USER EXISTS, PASSWORD WILL BE CHECKED
+    # ELSE NOT CHECKED
+    # NOTE: PASSWORDS ARE HASHED FOR SECURITY
     if (mysqli_num_rows($result) > 0) {
         while($row = mysqli_fetch_array($result)){
             if (password_verify($password,$row['Password'])){
@@ -124,11 +125,12 @@ function SignUp($username, $password, $email){
 /*
     Defines functions for user dashboard
 */
+
 function deletePost($postArray){
-    # Make Database Connection
+    # ESTABLISH DB CONNECTION
     $db = getDB();
 
-    # Delete checked posts
+    # DELETE SELECTED POSTS
     $statement = "DELETE FROM Post WHERE PostID IN ($postArray) ";
     if (mysqli_query($db,$statement)){
         # SUCCESSFUL DELETE
@@ -221,13 +223,14 @@ function search($userID,$field){
     return $result;
 }
 
+
 /* FOR index.php */
 
 function getAll(){
     # ESTABLISH DATABASE CONNECTION
     $db = getDB();
 
-    # get SQL query + Bind Parameters
+    # GET ALL POSTS
     $statement = "SELECT u.UserID, p.PostID, u.UserName, p.PostID, p.Title, DATE_FORMAT(p.PostDate, '%m/%d/%y') AS 'P', c.Type, SUM(r.Number) as 'RANK' 
     FROM Rank r 
     INNER JOIN Post p INNER JOIN Users u 
@@ -243,7 +246,7 @@ function getAll(){
 }
 
 /* 
-    These are SQL functions for filling up data for a single post page
+    These are Functions for filling up data for a single post page
 */
 
 function fillPost($postID){
@@ -251,7 +254,7 @@ function fillPost($postID){
     $db = getDB();
 
     # GET ALL THE POSTS
-    $statement = "SELECT u.UserName, p.PostID, p.Content, p.Title, DATE_FORMAT(p.PostDate, '%m/%d/%y') AS 'P', c.Type, SUM(r.Number) as 'RANK' 
+    $statement = "SELECT u.UserName, p.PostID, p.Content, p.Title, c.Image, c.Type, DATE_FORMAT(p.PostDate, '%m/%d/%y') AS 'P', c.Type, SUM(r.Number) as 'RANK' 
     FROM Rank r 
     INNER JOIN Post p INNER JOIN Users u 
     INNER JOIN Category c ON u.UserID = p.UserID 
@@ -285,7 +288,7 @@ function getComments($postID){
 }
 
 function getRank($postID){
-    # establish database connection
+    # ESTABLISH DB CONNECTION
     $db = getDB();
 
     # get SQL query + Bind Parameters
@@ -301,7 +304,7 @@ function getRank($postID){
 }
 
 function newComment($postID,$userID,$comment){
-      # establish database connection
+      # ESTABLISH DB CONNECTION
       $db = getDB();
 
       # INSERT NEW COMMENT into COMMENTS Table + Bind Parameters
@@ -319,6 +322,7 @@ function newComment($postID,$userID,$comment){
 /*
     Create New Post
 */
+
 function createNewPost($userID, $title, $categoryID, $text){
     
     # ESTABLISH DATABASE CONNECTION
@@ -350,7 +354,6 @@ function createNewPost($userID, $title, $categoryID, $text){
 
 }
 
-# THIS FUNCTION IS JSUT HELPING THE CREATE POST FUNCTION LOL
 function getPostID($userID, $title){   
     # ESTABLISH DATABASE CONNECTION 
     $db = getDB();
@@ -366,40 +369,10 @@ function getPostID($userID, $title){
     return $result;
 }
 
-
-
 /*
-    Pagination Functions
+    FUNCTION FOR EDITING POSTS
 */
 
-function pagination($result_per_page){
-    $db = getDB();
-
-    if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; }; 
-    $start_from = ($page-1) * $results_per_page;
-    $statement = "SELECT p.PostID, p.Title, p.PostDate, c.Type, SUM(r.Number) as 'Rank' FROM Rank r 
-    INNER JOIN Post p 
-    INNER JOIN Users u 
-    INNER JOIN Category c 
-    ON u.UserID = p.UserID 
-    AND p.CategoryID = c.CategoryID 
-    AND p.PostID = r.PostID 
-    WHERE u.UserID = ? 
-    GROUP BY p.PostID ORDER BY Rank DESC LIMIT $start_from, $results_per_page";
-
-    $statement = mysqli_prepare($db, $statement);
-    mysqli_stmt_execute($statement);
-    $result = mysqli_stmt_get_result($statement);
-    $numberofrows = mysqli_num_rows($result);
-
-    return $result;
-}
-
-
-
-/*
-    Function for Editing Posts
-*/
 function editPost($PostID, $title, $categoryID, $text){
     # MAKE DATABASE CONNECTION
     $db = getDB();

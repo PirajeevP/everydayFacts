@@ -18,6 +18,7 @@ $text = $_POST['content-area'];
 // echo "Category: " . $category;
 // echo "<br> This is text: " . htmlentities($_POST['content-area']) . "<br>"; 
 
+# CREATE NEW POST
 if (!empty($_POST)){
     if ( isset( $_POST['title'],$_POST["sel-category"],$_POST["content-area"])){
         echo "<br> there's stuff in title and category";

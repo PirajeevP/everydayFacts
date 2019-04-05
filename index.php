@@ -19,7 +19,7 @@ $db = getDB();
 # get SQL query + Bind Parameters
 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; }; 
 $start_from = ($page-1) * $results_per_page;
-$statement = "SELECT u.UserID, p.PostID, u.UserName, p.PostID, p.Title, DATE_FORMAT(p.PostDate, '%m/%d/%y') AS 'P', c.Type, SUM(r.Number) as 'RANK' 
+$statement = "SELECT u.UserID, p.PostID, u.UserName, p.PostID, p.Title, c.Image, DATE_FORMAT(p.PostDate, '%m/%d/%y') AS 'P', c.Type, SUM(r.Number) as 'RANK' 
 FROM Rank r 
 INNER JOIN Post p INNER JOIN Users u 
 INNER JOIN Category c ON u.UserID = p.UserID 
@@ -50,7 +50,7 @@ $result = mysqli_stmt_get_result($statement);
                     <div class="card mt-3 bg-white border border-light shadow-sm mb-5">
                         <div class="row no-gutters">
                             <div class="col-auto p-4">
-                                <img width="130" src="./images/hamster.jpg" class="img-fluid img-thumbnail" alt="">
+                                <img width="130" src="./images/categories/<?php echo $row["Image"];?>.png" class="img-fluid " alt="">
                             </div>
 
                             <div class="col">
@@ -123,7 +123,7 @@ $result = mysqli_stmt_get_result($statement);
                         <!-- to divide page -->
                 </div>
                 <div class = "col-md-8">
-                        <nav aria-label="Page navigation example">
+                        <nav>
                         <ul class="pagination justify-content-center">
                             <?php
                                 $statement = "SELECT COUNT(p.PostID) AS total FROM Post p";

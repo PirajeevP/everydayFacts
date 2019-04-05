@@ -37,10 +37,11 @@ if (!empty($_POST)){
                             while($row = mysqli_fetch_array($result)) {
                         ?>
                     <div class = "p-3 user-post bg-white border border-light shadow-sm p-3 mb-5">
-                        <p class = "float-left"><?php echo $row["UserName"];?></p>
+                        <p class = "float-left"><?php echo $row["UserName"]?></p>
                         <p class="float-right"><?php echo $row["P"];?></p>
                         <div class = "mt-5 text-center">
-                            <img width="200" class = "img-fluid img-thumbnail" src = "./images/hamster.jpg">
+                            <img width="200" src="./images/categories/<?php echo $row["Image"];?>.png" class="img-fluid" alt="">
+                            <p class = mt-5><?php echo $row["Type"];?></p>
                             <h3 class = "mt-3"><?php echo $row["Title"];?></h3>
                             <p> <?php echo $row["Content"];?> </p>
                         </div>
