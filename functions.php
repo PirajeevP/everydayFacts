@@ -37,7 +37,6 @@ function runQuery($db, $query) {
 /*
 Defines functions for users to login or signup.
 */
-
 function LogIn($username, $password){
     // Create a Database Connection
     $db = getDB();
@@ -68,7 +67,7 @@ function LogIn($username, $password){
     }
 }
 
-function SignUp($username, $password){
+function SignUp($username, $password, $email){
     // Create a Database Connection
     $db = getDB();
     
@@ -84,21 +83,22 @@ function SignUp($username, $password){
     // Note: Password's are hashed for security reasons. 
     if (mysqli_num_rows($result) > 0) {
         echo "User already exists";
+        $success = -1;
     } else {
         $password = password_hash($password,PASSWORD_DEFAULT);
-        $statement = "INSERT INTO Users (UserName,Password) VALUES ('$username', '$password')";
+        $statement = "INSERT INTO Users (UserName,Password, Email) VALUES ('$username', '$password', '$email')";
         
         if (mysqli_query($db,$statement)){
             echo "sucesss";     
             // $_SESSION['userID'] = $username;
-            $sucess = 1;   
+            $success = 1;   
         } else {
-            echo "Error";
-            $success = -1;
+            echo "Error in creating new user";
+            $success = -2;
         };
     }
 
-    if ($sucess ==1){
+    if ($success ==1){
         $statement = "SELECT UserName, UserID FROM Users WHERE UserName = ?";
         $statement = mysqli_prepare($db, $statement);
         mysqli_stmt_bind_param($statement,'s',$username);
@@ -107,10 +107,19 @@ function SignUp($username, $password){
         while($row = mysqli_fetch_array($result)){
             echo $row["UserID"];
             $_SESSION["userID"] = $row["UserID"];
+            echo "hey i made it here";
+            header("Location: dashboard.php");
         }
+    } else if ($success == -1){
+        $a = "signup.php?msg=exists";
+        header ("Location: " . $a);
+    } else if ($success == -2){
+        $a = "signup.php?msg=failed";
+            header ("Location: " . $a);
     }
     
 }
+
 
 /*
     Defines functions for user dashboard

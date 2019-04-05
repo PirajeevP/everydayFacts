@@ -41,7 +41,8 @@ if (mysqli_num_rows($result) > 0) {
     }
 } else {
    echo "Account Does not Exist";
-   header ("Location: login.php");
+   $a = "login.php?msg=dne";
+   header ("Location: " . $a);
 }
 //  header ("Location: login.php");
 ?>

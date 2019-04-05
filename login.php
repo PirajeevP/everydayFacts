@@ -49,6 +49,10 @@ session_start();
                             if (isset($_GET["msg"]) && $_GET["msg"] == 'failed') {
                                 echo "Wrong Username / Password";
                                 }
+                            
+                            if (isset($_GET["msg"]) && $_GET["msg"] == 'dne') {
+                                    echo "User does not exist. Please create an account.";
+                                }
                         ?>
                     </div>
             </div>

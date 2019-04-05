@@ -3,20 +3,9 @@
 include 'include/header.php';
 include 'functions.php';
 
-$db = getDB();
-$query = "SELECT * FROM Users";
-$result = runQuery($db, $query);
 
 session_start();
-$username = $_POST['username'];
-$password = $_POST['password'];
 
-if (!empty($_POST)){
-    if ( isset( $_POST['username'] ) && isset( $_POST['password'] ) ) {
-        echo "hey";
-        SignUp($username,$password);
-    } 
-}
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +19,7 @@ if (!empty($_POST)){
             </div>
             <div class = "col-md-4 text-center">
                 <h1> Create A Free EverydayFacts Account </h1>
-                    <form  action="" method="post" name="signUp">
+                    <form  action="signupProcessing.php" method="post" name="signUp" onsubmit = "return validateSignUp()">
                         <div class = "form-group mt-4">
                         <input type="text" class="form-control" name ="username" id="user" placeholder="Username">
                         </div>
@@ -50,7 +39,45 @@ if (!empty($_POST)){
                     </form>
                     <div class = "mt-4">
                         <a href = "login.php">Already have an account? Log In</a>
-                        <div class="errobox" id="ero"> </div>
+                        
+                        <!-- Error Messages -->
+                        <div class="errobox" id="ero"> 
+                        
+                        <?php
+                            echo "<br>";
+                                if (isset($_GET["msg"]) && $_GET["msg"] == 'exists') {
+                                    echo "User already exists. Please log in";
+                                }
+
+                                if (isset($_GET["msg"]) && $_GET["msg"] == 'failed') {
+                                    echo "Email already in use";
+                                }
+
+                                if (isset($_GET["msg"]) && $_GET["msg"] == 'wp'){
+                                    echo "Passwords do not match";
+                                } 
+                                
+                                if (isset($_GET["msg"]) && $_GET["msg"] == 'we'){
+                                    echo "Email must match";
+                                }
+
+                                if (isset($_GET["msg"]) && $_GET["msg"] == 'n'){
+                                    echo "All fields are required";
+                                }
+
+                                if (isset($_GET["msg"]) && $_GET["msg"] == 'lp'){
+                                    echo "Password must be between 1-10 characters";
+                                }
+
+                                if (isset($_GET["msg"]) && $_GET["msg"] == 'lu'){
+                                    echo "Username must be between 1-16 characters";
+                                }
+                            ?>
+                        </div>
+
+                        
+                      
+                  
                     </div>
             </div>
             <div class = "col">

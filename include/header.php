@@ -25,7 +25,7 @@ echo "[testing purposes] This is User ID: "  . $_SESSION['userID'];
         
         <!-- other css -->
         <link href="./css/style2.css" type="text/css" rel="stylesheet">
-        <script type="text/javascript" src="js/formCheck.js"></script>
+        <script type="text/javascript" src="js/formValidate.js"></script>
         <title>EverydayFacts</title>
     </head>
 
