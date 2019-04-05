@@ -350,6 +350,36 @@ function pagination($result_per_page){
 
     return $result;
 }
+function editPost($PostID, $title, $categoryID, $text){
+    $db = getDB();
+
+    $statement = "UPDATE Post SET Title = '$title',CategoryID = $categoryID, Content = '$text' WHERE PostID = $PostID";
+
+       # IF INSERT SUCCESSFUL, GO BACK TO DASHBOARD. ELSE, GO BACK TO CREATE NEW POST. 
+        if (!mysqli_query($db,$statement)){
+            // fail 
+            echo "Edit Post: FAILED";
+        } else {
+            echo "Update Post: SUCESS";
+            header ("Location: dashboard.php");
+        }
+
+
+}
+function getPostData($postID){    
+    $db = getDB();
+
+    $statement = "SELECT Title,CategoryID,Content FROM Post WHERE PostID = ?";
+    $statement = mysqli_prepare($db, $statement);
+    mysqli_stmt_bind_param($statement,'d',$postID);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    $numberofrows = mysqli_num_rows($result);
+
+    return $result;
+}
 ?>
+
+
 
 

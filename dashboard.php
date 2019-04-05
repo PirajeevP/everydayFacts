@@ -102,7 +102,7 @@ if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
                         <tr>
                         <th></th>
                         <th>Title</th>
-                        <th>View</th>
+                        <th>Edit</th>
                         <th>Category</th>
                         <th>Date</th>
                         <th>Rank</th>
@@ -114,13 +114,14 @@ if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
 
                         if (mysqli_num_rows($result) > 0) {
                             while($row = mysqli_fetch_array($result)) {
+                                
                         ?>
                         <tr> 
                         <th scope="row">
                              <input name = "checkbox[]" value="<?php echo $row["PostID"];?>" type="checkbox" aria-label="Checkbox for following text input">
                         </th>
-                        <td><a href="#"><?php echo $row["Title"];?></a></td>
-                        <td><a href="post.php?id=<?php echo $row["PostID"];?>">View</a></td>
+                        <td><a href="post.php?id=<?php echo $row["PostID"];?>"><?php echo $row["Title"];?></a></td>
+                        <td><a href="editPost.php?id=<?php echo $row["PostID"];?>">Edit</a></td>
                         <td><?php echo $row["Type"];?></td>
                         <td><?php echo $row["PostDate"];?></td>
                         <td><?php echo $row["Rank"];?></td>
