@@ -51,8 +51,8 @@ if (!empty($_POST)){
             <form action = "" name = "newpost" method="post" id="identifier">
                 <div class = "form-group">
                 <input class="form-control" id="title" type="text" name="title" value="<?php echo $realData["Title"];?> "> 
-                    <select class ="custom-select mt-3" name="sel-category" id = "gories">
-                        <option value ="0" selected>Category</option>
+                    <select required class ="custom-select mt-3" name="sel-category" id = "gories">
+                        <option value ="" selected>Select New Category</option>
                                 <?php
                             if (mysqli_num_rows($fillCat) > 0) {
                                 while($row = mysqli_fetch_array($fillCat)) {

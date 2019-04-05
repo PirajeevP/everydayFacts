@@ -28,17 +28,15 @@ if ( isset( $_SESSION['userID'],$_POST["sel-category"])) {
     $result = getPosts($a);
 }
 
+
 # for delete.. but DOES NOT WORK YET
-if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
-    $deleteIds = $_POST['checkbox'];   // it will be an array
-    // $sql = "DEFRE FROM tablename WHERE id in (".implode("," , $deleteIds).") ";
- 
-    // // run the query
-    echo $deleteIds;
- }
-
-// pagination(1);
-
+if (isset($_POST['deleteSubmit'])){
+    if (!empty($_POST['checked_id'])){
+        $db = getDB();
+        $idStr = implode(',',$_POST['checked_id']);
+        deletePost($idStr);
+    }
+}
 
 ?>
 
@@ -57,12 +55,12 @@ if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
             <!-- Filter Options -->
             <div class = "row mt-5">
                 <div class = "col-md-6">
-                <form method="post">
+                <form method="post" class = "filter-options">
                     <div class = "form-inline">
-                        <select class = "mr-2 custom-select">
+                        <select name = "deleteOption" class = "mr-2 custom-select">
                             <option selected>Delete</option>
                         </select>
-                        <input type="submit" value = "Apply" class="btn btn-primary">
+                        <input type="submit" name="deleteSubmit" value = "Apply" class="btn btn-primary">
 
                         <select name = "sel-category" class = "ml-2 mr-2 custom-select tx">
                             <option value ="0" selected>Category</option>
@@ -81,7 +79,7 @@ if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
                         </select>
                         <button type="Submit" class="btn btn-primary">Filter</button>
                     </div>
-                    </form>
+                   
                 </div>
 
                 <div class = "col-md-6">
@@ -118,7 +116,9 @@ if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
                         ?>
                         <tr> 
                         <th scope="row">
-                             <input name = "checkbox[]" value="<?php echo $row["PostID"];?>" type="checkbox" aria-label="Checkbox for following text input">
+                        
+                                <input name = "checked_id[]" value="<?php echo $row["PostID"];?>" type="checkbox">
+                         
                         </th>
                         <td><a href="post.php?id=<?php echo $row["PostID"];?>"><?php echo $row["Title"];?></a></td>
                         <td><a href="editPost.php?id=<?php echo $row["PostID"];?>">Edit</a></td>
@@ -135,6 +135,7 @@ if(isset($_POST['checkbox']) && count($_POST['checkbox']) > 0){
                         ?>
                     </tbody>
                 </table>
+                    </form>
                 </div>
             </div>
 

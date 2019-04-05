@@ -68,10 +68,10 @@ function LogIn($username, $password){
 }
 
 function SignUp($username, $password, $email){
-    // Create a Database Connection
+    # CREATE DB CONNECTION
     $db = getDB();
     
-    // Check if User exists in Database + Bind Parameters
+    # CHECK IF USER ALREADY EXISTS IN DATABASE
     $statement = "SELECT UserName, UserID FROM Users WHERE UserName = ?";
     $statement = mysqli_prepare($db, $statement);
     mysqli_stmt_bind_param($statement,'s',$username);
@@ -79,8 +79,8 @@ function SignUp($username, $password, $email){
     $result = mysqli_stmt_get_result($statement);
 
     
-    // If User Does Not Exist, then a new account will be created. 
-    // Note: Password's are hashed for security reasons. 
+    // IF USER DOES NOT EXIST, A NEW ACCOUNT WILL BE CREATED.
+    # NOTE: PASSWORDS ARE HASHED FOR SECURITY REASONS
     if (mysqli_num_rows($result) > 0) {
         echo "User already exists";
         $success = -1;
@@ -89,15 +89,15 @@ function SignUp($username, $password, $email){
         $statement = "INSERT INTO Users (UserName,Password, Email) VALUES ('$username', '$password', '$email')";
         
         if (mysqli_query($db,$statement)){
-            echo "sucesss";     
-            // $_SESSION['userID'] = $username;
+            # NEW USER CREATED 
             $success = 1;   
         } else {
-            echo "Error in creating new user";
+            # ERROR IN CREATING NEW USER
             $success = -2;
         };
     }
 
+    # IF USER CREATION SUCCESSFUL, GO TO DASHBOARD
     if ($success ==1){
         $statement = "SELECT UserName, UserID FROM Users WHERE UserName = ?";
         $statement = mysqli_prepare($db, $statement);
@@ -105,17 +105,17 @@ function SignUp($username, $password, $email){
         mysqli_stmt_execute($statement);
         $result = mysqli_stmt_get_result($statement);
         while($row = mysqli_fetch_array($result)){
-            echo $row["UserID"];
             $_SESSION["userID"] = $row["UserID"];
-            echo "hey i made it here";
             header("Location: dashboard.php");
         }
     } else if ($success == -1){
+        # SIGN UP UNSUCCESSFUL. USER ALREADY EXISTS.
         $a = "signup.php?msg=exists";
         header ("Location: " . $a);
     } else if ($success == -2){
+        # SIGN UP UNSUCCESSFUL. ERROR.
         $a = "signup.php?msg=failed";
-            header ("Location: " . $a);
+        header ("Location: " . $a);
     }
     
 }
@@ -124,11 +124,26 @@ function SignUp($username, $password, $email){
 /*
     Defines functions for user dashboard
 */
-function getPosts($userID){
+function deletePost($postArray){
     # Make Database Connection
     $db = getDB();
 
-    # Retrieve posts that belong to user
+    # Delete checked posts
+    $statement = "DELETE FROM Post WHERE PostID IN ($postArray) ";
+    if (mysqli_query($db,$statement)){
+        # SUCCESSFUL DELETE
+        header ("Location: dashboard.php");
+    } else {
+        # UNSUCCESFUL DELETE
+        header ("Location: dashboard.php");
+    };
+}
+
+function getPosts($userID){
+    # ESTABLISH DATABASE CONNECTION
+    $db = getDB();
+
+    # RETRIEVE POSTS THAT BELONG TO THE USER
     $statement = "SELECT p.PostID, p.Title, p.PostDate, c.Type, SUM(r.Number) as 'Rank' FROM Rank r 
     INNER JOIN Post p 
     INNER JOIN Users u 
@@ -161,8 +176,10 @@ function getCategories(){
 }
 
 function filter($categoryID, $userID){
+    # ESTABLISH DATABASE CONNECTION
     $db = getDB();
 
+    # SELECT POSTS THAT BELONG TO THE CATEGORY
     $statement = "SELECT p.PostID, p.Title, p.PostDate, c.Type, SUM(r.Number) as 'Rank' FROM Rank r 
     INNER JOIN Post p 
     INNER JOIN Users u 
@@ -281,8 +298,11 @@ function newComment($postID,$userID,$comment){
     Create New Post
 */
 function createNewPost($userID, $title, $categoryID, $text){
+    
+    # ESTABLISH DATABASE CONNECTION
     $db = getDB();
 
+    # SQL STATEMENT FOR INSERT
     $statement = "INSERT INTO Post (UserID, Title, CategoryID, Content) VALUES ($userID, '$title', $categoryID, '$text')";
 
        # IF INSERT SUCCESSFUL, GO BACK TO DASHBOARD. ELSE, GO BACK TO CREATE NEW POST. 
@@ -309,9 +329,11 @@ function createNewPost($userID, $title, $categoryID, $text){
 }
 
 # THIS FUNCTION IS JSUT HELPING THE CREATE POST FUNCTION LOL
-function getPostID($userID, $title){    
+function getPostID($userID, $title){   
+    # ESTABLISH DATABASE CONNECTION 
     $db = getDB();
 
+    # SQL STATEMENT TO GET POST ID
     $statement = "SELECT * FROM Post p INNER JOIN Users u WHERE u.UserID = p.UserID AND p.Title = ?";
     $statement = mysqli_prepare($db, $statement);
     mysqli_stmt_bind_param($statement,'s',$title);
@@ -350,25 +372,36 @@ function pagination($result_per_page){
 
     return $result;
 }
+
+
+
+/*
+    Function for Editing Posts
+*/
 function editPost($PostID, $title, $categoryID, $text){
+    # MAKE DATABASE CONNECTION
     $db = getDB();
 
     $statement = "UPDATE Post SET Title = '$title',CategoryID = $categoryID, Content = '$text' WHERE PostID = $PostID";
 
-       # IF INSERT SUCCESSFUL, GO BACK TO DASHBOARD. ELSE, GO BACK TO CREATE NEW POST. 
-        if (!mysqli_query($db,$statement)){
-            // fail 
-            echo "Edit Post: FAILED";
-        } else {
-            echo "Update Post: SUCESS";
-            header ("Location: dashboard.php");
-        }
-
-
+    # IF INSERT SUCCESSFUL, GO BACK TO DASHBOARD. ELSE, GO BACK TO CREATE NEW POST. 
+    if (!mysqli_query($db,$statement)){
+        # EDIT POST WAS NOT SUCCESSFUL 
+        $a = "editPost.php?id=".$PostID;
+        header ("Location: ".$a);
+    } else {
+        # EDIT POST WAS SUCCESSFUL 
+        $a = "editPost.php?id=".$PostID;
+        header ("Location: ".$a);
+    }
 }
+
+
 function getPostData($postID){    
+    # MAKE DATABASE CONNECTION
     $db = getDB();
 
+    # SQL STATEMENT TO GET POST
     $statement = "SELECT Title,CategoryID,Content FROM Post WHERE PostID = ?";
     $statement = mysqli_prepare($db, $statement);
     mysqli_stmt_bind_param($statement,'d',$postID);
