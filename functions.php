@@ -196,7 +196,7 @@ function filter($categoryID, $userID){
     mysqli_stmt_execute($statement);
     $result = mysqli_stmt_get_result($statement);
     $numberofrows = mysqli_num_rows($result);
-
+ 
     return $result;
 }
 
@@ -386,8 +386,7 @@ function editPost($PostID, $title, $categoryID, $text){
         header ("Location: ".$a);
     } else {
         # EDIT POST WAS SUCCESSFUL 
-        $a = "editPost.php?id=".$PostID;
-        header ("Location: ".$a);
+        header ("Location: dashboard.php");
     }
 }
 

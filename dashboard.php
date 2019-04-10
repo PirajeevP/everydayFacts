@@ -8,32 +8,29 @@ session_start();
 # LOAD CATEGORIES
 $fillCat = getCategories();
 
-// echo "Testing.. This is CategoryID: " . $_POST["sel-category"];
 
 # if USERID is SET and CATEGORY is SET THEN FILTER
 if ( isset( $_SESSION['userID'],$_POST["sel-category"])) {
     $a = $_SESSION['userID'];
     $cat = $_POST["sel-category"];
 
-    # IF categoryID != 0. get filtered posts.. ELSE get ALL 
-    # because no category is selected.. 
-    if ($cat != 0){
+    # IF categoryID != "". get filtered posts.. 
+    if ($cat != ""){
         $result = filter($cat,$a);
-    } else {
-        $a = $_SESSION['userID'];
-        $result = getPosts($a);
-    }
+
+    } 
 } else {
     $a = $_SESSION['userID'];
     $result = getPosts($a);
 }
 
+
 # SEARCH BAR FUNCTIONALITIES 
-if (isset($_POST['searchbar'])){
+if ($_POST['searchbar'] != ""){
     $a = $_SESSION['userID'];
     $text = $_POST['searchbar'];
     $result = search($a,$text);
-}
+} 
 
 # DELETE FUCTIONALITIES
 if (isset($_POST['deleteSubmit'])){
@@ -116,9 +113,8 @@ if (isset($_POST['deleteSubmit'])){
                     <tbody>
                         <!-- one row -->
                         <?php
-
                         if (mysqli_num_rows($result) > 0) {
-                            while($row = mysqli_fetch_array($result)) {
+                            while($row = mysqli_fetch_array($result)) { 
                                 
                         ?>
                         <tr> 

@@ -40,9 +40,9 @@ if (!empty($_POST)){
 
             <form action = "" name = "newpost" method="post" id="identifier">
                 <div class = "form-group">
-                    <input class="form-control" id="title" type="text" name="title" placeholder="Title">
-                    <select class ="custom-select mt-3" name="sel-category" id = "gories">
-                        <option value ="0" selected>Category</option>
+                    <input required class="form-control" id="title" type="text" name="title" placeholder="Title">
+                    <select required class ="custom-select mt-3" name="sel-category" id = "gories">
+                        <option value ="" selected>Category</option>
                                 <?php
                             if (mysqli_num_rows($fillCat) > 0) {
                                 while($row = mysqli_fetch_array($fillCat)) {
@@ -78,16 +78,8 @@ if (!empty($_POST)){
                             };
                             var editor = new Quill('#quillEditor',options);
                         
-                        var textContent = document.getElementById("textcontent");
-
-                        // editor.on('text-change', function(){
-                        //     var delta = editor.root.innerHTML;
-                        //     textContent.innerHTML = delta;
-                         
-                        // });
 
                         $("#identifier").on("submit",function(){
-                        // $("#hiddenArea").val($("#quillEditor").html())
                         var delta= editor.root.innerHTML;
                         $("#hiddenArea").val($(delta).html());
                         })

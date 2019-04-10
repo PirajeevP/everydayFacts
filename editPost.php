@@ -12,22 +12,17 @@ $title = $_POST['title'];
 $category = $_POST["sel-category"];
 $text = $_POST['content-area'];
 
-# THIS IS TESTING.. CAN BE DELETED LATER
-echo "Title: " . $title . "<br>";
-echo "Category: " . $category;
-echo "<br> This is text: " . htmlentities($_POST['content-area']) . "<br>"; 
+
 
 $id = $_GET['id'];
 $data = getPostData($id);
 $realData = mysqli_fetch_array($data);
-echo $realData["Title"];
-echo $realData["Content"];
+
 
 
 
 if (!empty($_POST)){
     if ( isset( $_POST['title'],$_POST["sel-category"],$_POST["content-area"])){
-        echo "<br> there's stuff in title and category";
         editPost($id,$title,$category,$text);
     } 
 }
@@ -50,7 +45,7 @@ if (!empty($_POST)){
 
             <form action = "" name = "newpost" method="post" id="identifier">
                 <div class = "form-group">
-                <input class="form-control" id="title" type="text" name="title" value="<?php echo $realData["Title"];?> "> 
+                <input required class="form-control" id="title" type="text" name="title" value="<?php echo $realData["Title"];?> "> 
                     <select required class ="custom-select mt-3" name="sel-category" id = "gories">
                         <option value ="" selected>Select New Category</option>
                                 <?php
@@ -89,16 +84,8 @@ if (!empty($_POST)){
                             };
                             var editor = new Quill('#quillEditor',options);
                         
-                        var textContent = document.getElementById("textcontent");
-                            
-                        editor.on('text-change', function(){
-                            var delta = editor.root.innerHTML;
-                            textContent.innerHTML = delta;
-                         
-                        });
                         
                         $("#identifier").on("submit",function(){
-                        // $("#hiddenArea").val($("#quillEditor").html())
                         var delta= editor.root.innerHTML;
                         $("#hiddenArea").val($(delta).html());
                         })
@@ -106,7 +93,7 @@ if (!empty($_POST)){
                         
                     </div>
                 
-                    <button type="submit" class="mt-3 btn btn-secondary">Publish</button>
+                    <button type="submit" class="mt-3 btn btn-secondary">Update</button>
                 </div>
             </form>
         </div>
