@@ -12,13 +12,9 @@ $title = $_POST['title'];
 $category = $_POST["sel-category"];
 $text = $_POST['content-area'];
 
-
-
 $id = $_GET['id'];
 $data = getPostData($id);
 $realData = mysqli_fetch_array($data);
-
-
 
 
 if (!empty($_POST)){
@@ -45,7 +41,8 @@ if (!empty($_POST)){
 
             <form action = "" name = "newpost" method="post" id="identifier">
                 <div class = "form-group">
-                <input required class="form-control" id="title" type="text" name="title" value="<?php echo $realData["Title"];?> "> 
+                <p> <b>Old Title:</b> <?php echo $realData["Title"];?></p>
+                <input required class="form-control" id="title" type="text" name="title" placeholder = "Enter New Title"> 
                     <select required class ="custom-select mt-3" name="sel-category" id = "gories">
                         <option value ="" selected>Select New Category</option>
                                 <?php
