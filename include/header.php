@@ -3,8 +3,6 @@
 
 <?php
 session_start(); 
-
-echo "[testing purposes] This is User ID: "  . $_SESSION['userID'];
 ?>
 <!-- This file contains the header for each page for navigation -->
     <head>
@@ -24,7 +22,7 @@ echo "[testing purposes] This is User ID: "  . $_SESSION['userID'];
         <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
         
         <!-- other css -->
-        <link href="./css/style2.css" type="text/css" rel="stylesheet">
+        <link href="./css/style.css" type="text/css" rel="stylesheet">
         <script type="text/javascript" src="js/formValidate.js"></script>
         <title>EverydayFacts</title>
     </head>

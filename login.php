@@ -3,21 +3,8 @@
 include 'include/header.php';
 include 'functions.php';
 
-$db = getDB();
-$query = "SELECT * FROM Users";
-$result = runQuery($db, $query);
 
 session_start();
-// $username = $_POST['username'];
-// $password = $_POST['password'];
-
-// if (!empty($_POST)){
-//     if ( isset( $_POST['username'] ) && isset( $_POST['password'] ) ) {
-//         echo "hey";
-//         // LogIn($username,$password);
-//     } 
-// }
-
 
 
 ?>

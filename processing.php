@@ -44,5 +44,4 @@ if (mysqli_num_rows($result) > 0) {
    $a = "login.php?msg=dne";
    header ("Location: " . $a);
 }
-//  header ("Location: login.php");
 ?>

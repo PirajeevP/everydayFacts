@@ -1,103 +1,97 @@
-DROP DATABASE IF EXISTS `everydayfactsDB`;
-CREATE DATABASE IF NOT EXISTS `everydayfactsDB`;
+-- phpMyAdmin SQL Dump
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:8889
+-- Generation Time: Apr 05, 2019 at 04:05 AM
+-- Server version: 5.7.23
+-- PHP Version: 7.2.10
 
-#
-# Table structure for table `Users`
-#
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
-CREATE TABLE `Users`(
-    `UserID` INTEGER NOT NULL AUTO_INCREMENT,
-    `UserName` VARCHAR(50) UNIQUE,
-    `Password` VARCHAR(50),
-    `UserDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-     INDEX (`UserID`),
-    PRIMARY KEY(`UserID`)
-) ENGINE = innodb DEFAULT CHARSET=utf8;
+--
+-- Database: `everydayfactsDB`
+--
 
-SET autocommit = 1;
+-- --------------------------------------------------------
 
-#
-# Dumping data for table `Users`
-#
+--
+-- Table structure for table `Post`
+--
 
-INSERT INTO `Users`(`UserName`,`Password`) VALUES ('guest1','1234');
-INSERT INTO `Users`(`UserName`,`Password`) VALUES ('guest2','1234');
-INSERT INTO `Users`(`UserName`,`Password`) VALUES ('guest3','1234');
-INSERT INTO `Users`(`UserName`,`Password`) VALUES ('guest4','1234');
+CREATE TABLE `Post` (
+  `PostID` int(11) NOT NULL,
+  `UserID` int(11) DEFAULT NULL,
+  `Title` text,
+  `PostDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CategoryID` int(11) DEFAULT NULL,
+  `Content` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `Post`
+--
 
+INSERT INTO `Post` (`PostID`, `UserID`, `Title`, `PostDate`, `CategoryID`, `Content`) VALUES
+(1, 35, 'TIL that rh-null, the rarest blood type of the world, has been called the \"Golden Blood\". This blood type is so rare that only 43 people in the world have it, and there are only 9 active donor.', '2019-03-31 02:50:03', 1, 'Rhnull phenotype. Rhnull individuals have no Rh antigens (no Rh or RhAG) on their red blood cells. This condition is rare.'),
+(2, 1, 'TIL in ancient Egypt, under the decree of Ptolemy II, all ships visiting the city were obliged to surrender their books to the library of Alexandria and be copied. The original would be kept in the library and the copy given back to the owner.             ', '2019-03-31 02:50:03', 4, 'Ptolemy II Philadelphus, (Philadelphus in Greek: “Brother-Loving”) (born 308 bce, Cos—died 246), king of Egypt (285–246 bce), second king of the Ptolemaic dynasty, who extended his power by skillful diplomacy, developed agriculture and commerce, and made Alexandria a leading centre of the arts and sciences.'),
+(3, 35, 'TIL Australia\'s first cops were all criminals. Their first police force was made up of 12 of the best behaved convicts.', '2019-03-31 02:50:03', 5, 'When you think of the police force, you probably think of exceptional men and women. Pillars of society. But that wasn’t always the case.\r\n\r\nIn fact, Australia’s first police force was made up entirely of convicts.\r\n\r\nAfter the First Fleet arrived in New South Wales in January of 1788, the Marines of the Royal Navy was put in charge of law enforcement, laying down the rules set by Governor Arthur Phillip.\r\n\r\nWith the pain of reduced rations hitting hard, crime began to rise steadily throughout the colony.\r\n\r\nIt was soon decided that the new settlement needed a police force of its own, so Governor Phillip created the Night Watch.\r\n\r\nWith little manpower available, the Governor decided to populate the Night Watch with 12 of the best behaved convicts.'),
+(4, 3, 'TIL if you won the lottery in Australia, you had to go public with your win, turning into an overnight celebrity. This was until the abduction & murder of Graeme Thorne, 8, whose family won the lottery leading to Graeme being abducted for ransom but killed.', '2019-03-31 02:50:03', 5, 'It was the 7th of July, 1960, when Freda Thorne kissed her son, 8-year-old Graeme Thorne, goodbye and sent him off to school. Graeme lived in a two-bedroom ground floor flat in Edward St., Bondi, Australia, with his mother, his father, Bazil, and his 3-year-old sister, Belinda.\r\n\r\nTragically, this was the last time Freda would ever see her son alive. Moments after leaving their home, he would become the very first victim of kidnap for ransom in Australia’s history.\r\n\r\nThat morning, Graeme walked the short distance to Wellington and O’Brien Streets to wait for family friend, Phyllis Smith, who would routinely collect him from this spot to take him to school along with her own two sons. When she arrived as the designated spot, Graeme wasn’t there. Phyllis drove to the Thorne residence to check if Graeme was there. He wasn’t. Freda immediately called police to report her son missing.\r\n\r\n'),
+(5, 5, 'TIL the last victim of the 1966 University of Texas at Austin shooting died in 2001 after having to undergo dialysis for 35 years, 3 times a week, 5 hours each time. His death was ruled a homicide.', '2019-03-31 02:50:03', 4, 'It took 35 painful years, but a rifle bullet fired by Charles Whitman on Aug. 1, 1966, from the observation deck of the University of Texas Tower finally killed its victim this week.\r\n\r\nDavid Gunby, 58, died Monday at Harris Hospital in Fort Worth, and the Tarrant County medical examiner, Dr. Nizam Peerwani, ruled the death a homicide, given the chronic kidney problems he suffered because of the gunshot wound.'),
+(6, 1, 'TIL NASA calculated that you only need 40 digits of Pi to calculate the circumference of the observable universe, to the accuracy of 1 hydrogen atom ', '2019-03-31 02:50:03', 1, '\r\nEarlier this week, we received this question from a fan on Facebook who wondered how many decimals of the mathematical constant pi (π) NASA-JPL scientists and engineers use when making calculations:\r\n\r\nDoes JPL only use 3.14 for its pi calculations? Or do you use more decimals like say: 3.14159265358979...'),
+(7, 30, 'TIL Smoking Areas existed in Public High Schools back in the 1980’s. Students could smoke cigarettes on school grounds between classes in designated lounges', '2019-03-31 05:36:28', 4, 'Legislation to eliminate student smoking areas on public high school campuses gained final legislative passage Wednesday night and was sent to Gov. George Deukmejian.'),
+(9, 1, 'TIL Slave Bible, an abridged version of the bible made for slaves, in which the enslaved Israelites never left Egypt and lines that condemn slave owners were removed.', '2019-04-02 21:10:45', 4, 'testing post content'),
+(11, 1, 'TIL Deep-Sea Gigantism is the tendency for species to be larger than their shallower-water relatives. Proposed explanations include: scarcer resources; greater pressure; and colder temperatures.', '2019-04-02 21:12:34', 1, 'In zoology, deep-sea gigantism, also known as abyssal gigantism, is the tendency for species of invertebrates and other deep-sea dwelling animals to be larger than their shallower-water relatives. Proposed explanations involve adaptation to scarcer food resources, greater pressure or colder temperature at depth.'),
+(13, 1, 'TIL Southern California Edison plans to bury 3.6 million pounds of lethal radioactive waste at the closed San Onofre nuclear power plant, about 100 feet from the ocean and just a few feet above the water table.', '2019-04-02 21:13:07', 5, 'he current plan for storing the plant\'s radioactive waste is ... Southern California Edison is keeping 3.6 million pounds of lethal radioactive waste at the shuttered San Onofre nuclear plant in ... The idea is to bury the spent fuel on site, about 100 feet from the ocean and just a few feet above the water table.\r\n'),
+(15, 1, 'TIL Pigeons can understand when a flock leader is doing a poor job and course correct. The poor leader will also spend less time as head bird and lose flock mates due to poor performance.', '2019-04-02 21:13:49', 5, 'Speed wins over competence in the pigeon world: The fastest, not the smartest, pigeons become leaders of the flock. But a new study published in the Royal Society journal Biology Letters shows potential for a coup in the coop when the head pigeon flies astray.\r\n\r\nResearchers at the University of Oxford confused pigeons using \"clock-shifting,\" to mix up their navigational abilities. This is essentially intentional jet-lagging: Homing pigeons are kept in a light-sealed room, where artificial lights are turned on and off at intervals out of phase with the sun\'s natural light. When they\'re released, they\'ve been calibrated to head in the direction you want them to fly.\r\n\r\nTaking eight GPS-tracked flocks of five birds each, they clock-shifted either the whole flock, none of the birds, or only the lead bird. In those where the whole flock was on the same, wrong page, they tended to deviate away from their homeward path. When just the leader was confused, however, the rest of the birds course-corrected, despite the leader\'s incorrect path. The head bird spent less time at the top, and lost more followers when the rest of the flock knew what was up.\r\n\r\n\"The exact mechanism by which a flock is able to correct for misinformation coming from its leader is still unclear,\" lead author Isobel Watts told Phys.org. \"However, we can speculate that it may be due to either misinformed flock leaders doubting their own abilities and paying more attention to what their flockmates appear to be doing, or the flock members recognising weakness in the leader and taking more control themselves.\"\r\n\r\ntags:  pigeons  animals  intelligence \r\nYou May Like\r\nHigh Speed WiFi Booster Takes Canada By Storm\r\nWiFi Booster\r\nU.S. Cardiologist: It\'s Like a Pressure Wash for Your Insides\r\nTotal Restore Supplement\r\nSponsored Links\r\nMost Of The Web Is Invisible To Google. Here\'s What It Contains\r\nWant to know more about the dark web and what’s available? Check out this roadmap to learn all about the deep web and its darkest alleys.\r\nYou May Like\r\nA Simple Fix For Snoring And Sleep Apnea\r\nPurch Expert\r\nDo You Know What Your Irish Surname Means?\r\nAncestry™\r\nSponsored Links\r\nSeasoning your cast iron pan isn’t enough\r\nCast iron is strange mixture of incredibly durable and unusually delicate—especially for a cooking implement. The metal is physically sturdy, but also highly reactive, which means even a droplet of water left in the pan can leave a rust spot. To protect that nice black surface, you must coat it with\r\nLATEST NEWS\r\nHEALTH\r\nWhat we know about the polio-like illness paralyzing children—and what we don\'t\r\nTECHNOLOGY\r\nMegapixels: An epic wildebeest crossing, a really hungry fox, and more Smithsonian Photo Contest finalists\r\nHEALTH\r\nThese charts will help you visualize just how unhealthy diets are around the world\r\nTECHNOLOGY\r\nNot all of us can ride a scooter. Here\'s a plan to get everyone where they need to go.\r\nHEALTH\r\nSleeping with your screens on is bad for you, whether you know it or not\r\nGADGETS\r\nThe best lightweight setup for a traveling guitarist\r\nENVIRONMENT\r\nAir pollution from corn production might contribute to thousands of deaths each year\r\nDIY\r\nHow to build a thriving indoor garden\r\nENVIRONMENT\r\nWind turbines do not cause cancer\r\n\r\nPOPSCI SHOP\r\nThis music-oriented app can help you learn a new language\r\nCheck out the Earworms Musical Brain Trainer app.\r\nBy Stack Commerce\r\n\r\nENVIRONMENT\r\nPretty soon we\'ll have to stop blaming China for global carbon emissions\r\nThe United States is lagging behind.\r\nBy Kat Eschner\r\n\r\nPOPSCI SHOP\r\nName your price on 65 hours of beginner-friendly design tutorials\r\nYour new creative career starts here.\r\nBy Stack Commerce\r\n\r\nSCIENCE\r\nDinosaur extinction is an unsolved mystery. This ancient fish may have swallowed some crucial evidence.\r\nBut the findings are not without their fair share of critics.\r\nBy Neel V. Patel\r\n\r\nGADGETS\r\nApple\'s AR headset, Amazon streaming news, and the rest of the current tech rumors\r\nCatch up on all the technology gossip without all the hype.\r\nBy PopSci Staff\r\n\r\nHEALTH\r\nMillennials want spirits—with none of the alcohol. Here\'s how distilleries make it work.\r\nThe science behind the latest (non-)drinking trend.\r\nBy Eleanor Cummins\r\n\r\nTECHNOLOGY\r\nThis experimental airplane will change shape while flying\r\nThe wing is strong but light.\r\nBy Rob Verger\r\n\r\nGADGETS\r\n40 percent off office supplies and other deals worth highlighting\r\nA quick guide to getting the goods for cheaper.\r\nBy Billy Cadden\r\nWant more news like this?\r\nSign up to receive our email newsletter and never miss an update!\r\n\r\nEnter email address\r\nBy submitting above, you agree to our privacy policy.\r\n\r\n \r\n          \r\nSUBSCRIBE RENEW CUSTOMER SERVICE PRIVACY POLICY TERMS OF USE ABUSE MASTHEAD CONTACT US GDPR\r\nMany products featured on this site were editorially chosen. Popular Science may receive financial compensation for products purchased through this site.\r\n\r\nCopyright © 2019 Popular Science. A Bonnier Corporation Company. All rights reserved. Reproduction in whole or in part without permission is prohibited.\r\n\r\n\r\n'),
+(16, 1, 'TIL Nearly half of all airline pilots admit to falling asleep during a flight. 29 percent of these reported waking up and seeing everyone else in the cabin asleep as well.', '2019-04-02 21:14:45', 5, 'Poll also finds 49 per cent of flight-deck crew believe tiredness to be biggest threat to safety'),
+(17, 1, 'TIL Noisestorm earned 50 thousand dollars from Epic Games for using their Unreal 4 game engine to create the music video for Crab Rave, \"for having the most creative and original use of their software. \"', '2019-04-02 21:26:13', 3, '\"Crab Rave\" was initially released as a small April Fool\'s Day joke,[3] although it soon gained popularity after becoming an internet meme due to the music video\'s uplifting theme and dancing crabs. In an interview with Suzana Palyan of Billboard, O\'Broin expressed his appreciation for its growing popularity, writing \"It\'s incredibly cool to see people enjoying it for the humour and video, as well as for the music itself. I really didn\'t anticipate the wave of new listeners and the plethora of memes based on the original; it\'s very fun to see the new creative variations being made every day.\" The music video was developed by O\'Broin using the program Unreal Engine.[4][3]'),
+(18, 1, 'TIL Geese mate for life. When a hunter kills a goose, it\'s partner will mourn and generally refuse to mate again.', '2019-04-02 21:26:50', 1, 'Geese are especially fastidious when it comes to their loyalty. They\'re well known for the long-term pair bonds they form. So what\'s their secret? What makes these water birds so successful in their relationships, and why would geese mate for life?'),
+(19, 1, 'TIL a majority of the \"snakes\" from the snake pit scene in Indiana Jones aren\'t actually snakes. The film used a species of legless lizards known as the sheltopusik.', '2019-04-02 21:29:07', 2, 'Our favourite ophidiophobe encounters snakes twice in the first of the three Indiana Jones movies. First, in South America, he finds himself in Jock’s plane, sharing a seat with Jock’s pet snake. You’d think that, being in South America, they’d use something South American, like a Boa Constrictor, which isn’t exactly hard to find. But no: they used a Burmese Python (Python molurus bivittatus) instead.'),
+(20, 1, 'TIL That malaria has killed more than half of all humans since they were created.', '2019-04-02 21:29:56', 1, 'Long before Thanos snapped his fingers in Avengers: Infinity War, another villain successfully killed half of humanity.\r\n\r\nMalaria is a simple parasite, transmitted by a mosquito bite. But this deadly disease, which has been around as long as homo sapiens, has killed more than all wars and natural disasters combined. It has wiped out cities, destroyed empires, ruined colonies, and may be responsible for 50 billion deaths, among them Alexander the Great and Marcus Aurelius (allegedly).'),
+(22, 1, 'TIL Amish people end formal education at the 8th grade. This is mainly because they value apprenticeship and hands-on learning, and that more advanced learning can foster anti-Christian beliefs and counter their values.', '2019-04-02 21:30:19', 3, 'Amish are well-known for their approach to schooling.  Most Amish children attend school in one- or two-room private schools, and end their formal education at the eighth grade.   Some observers criticize the Amish approach to education, seeing it as a means of restricting the individual.'),
+(23, 1, 'TIL about Hart Island in NY, one of the largest cemeteries in the U.S. About one million people have been buried there since 1869, mostly children and stillborn babies. Very few people have even been allowed to visit, and taking pictures or videos is illegal.', '2019-04-02 21:30:35', 4, 'Hart Island, sometimes referred to as Hart\'s Island, is an island in the northeast Bronx.'),
+(24, 1, 'TIL Groundhogs and Woodchucks are the same animal', '2019-04-02 21:32:46', 5, 'Groundhogs and woodchucks are the same animal. “Woodchuck” is just another name for “groundhog.”'),
+(25, 1, 'TIL about William R. King, who was the 13th Vice President. He died of tuberculosis after only 6 weeks in office. He was also likely President Buchanan’s same sex partner.', '2019-04-02 21:33:31', 4, 'William Rufus DeVane King (April 7, 1786 – April 18, 1853) was an American politician and diplomat. '),
+(26, 25, 'TIL American President Jimmy Carter issued complete pardons for draft avoiders and contentious objectors during the Vietnam War.', '2019-04-02 21:33:42', 4, 'On this day in 1977, U.S. President Jimmy Carter grants an unconditional pardon to hundreds of thousands of men who evaded the draft during the Vietnam War. '),
+(27, 1, 'Til that Harvard student and seminarian Jonathan Daniels traveled to the south to aid the civil rights movement. He was walking with a black girl when a deputy pointed his shotgun at her. Daniels jumped in front of her, sacrificing his life so that she could live.', '2019-04-02 21:36:22', 4, 'Jonathan Myrick Daniels (March 20, 1939 – August 20, 1965) was an Episcopal seminarian and civil rights activist. In 1965, he was murdered by a shotgun-wielding construction worker, Tom Coleman, who was a special county deputy, in Hayneville, Alabama, while in the act of shielding 17-year-old Ruby Sales'),
+(30, 1, 'TIL that cats have accents. Phonetics researchers have suggested that cats and their humans develop a “pidgin language” together to communicate, which may influence regional variations in cat vocalizations.', '2019-04-02 21:56:08', 1, 'Meow, miaou, yaong, nyan, näu: Humans say ‘meow’ in different ways, depending on what part of the world they’re from, but do cats? This is the question researchers at Lund University in Sweden are trying to answer in a new study on feline communication.'),
+(31, 1, 'TIL during the 1936 Berlin Olympics, Jesse Owens fouled his first two attempts at long jump, but before the final attempt his Nazi rival, Luz Long, gave him some friendly advice that helped Owens qualify and win gold', '2019-04-03 05:40:07', 1, 'The Track and Field World Championships begin Saturday in Berlin — and they\'re surrounded by symbolism. It\'s the first time an American team has returned to the German city for a major international championship since the infamous 1936 Berlin Olympics. American team members will wear a patch honoring Jesse Owens, the star of the \'36 games.'),
+(32, 1, 'TIL that Chicago\'s Field Museum has 10 colonies of flesh-eating beetles, who live and work at the museum cleaning animal bones for display.', '2019-04-03 05:44:46', 1, 'Not long ago, the thing in the tank was a living animal—a bobcat that prowled and hunted the way bobcats do, and then eventually died. What’s in the tank doesn’t resemble a bobcat, though. It’s just a mass that looks a little bit like jerky meat still on the bone. And the bobcat isn\'t alone, either: Little black beetles and setae-studded larvae are swarming all over the meat, devouring it. Put an ear to the top of the tank, and you’ll hear something akin to the snap-crackle-pop of Rice Krispies just drenched in milk—the sound of thousands of dermestid beetles hard at work.'),
+(33, 1, 'TIL an alcoholic court stenographer in Manhattan repeatedly typed I hate my job instead of documenting speech during cases', '2019-04-03 05:46:14', 1, 'The actions of Kochanski, who has since been fired, have jeopardised several cases by giving felons the opportunity to claim crucial evidence is missing.'),
+(39, 1, 'TIL in 2007, a 12 year old Norwegian boy named Hans Jorgen Olsen saved both himself and his sister from a vicious moose attack using skills he learned from playing World of Warcraft; taunt and feign death.', '2019-04-04 23:29:08', 1, 'Gaming skills are clearly transferable to real-life situations as one Norwegian boy will tell you. 12-year-old Hans Jorgen Olsen called upon skills gained through playing World of Warcraft to save himself and his sister from a moose attack.'),
+(45, 1, 'TIL of Saitō Musashibō Benkei, a Japanese warrior who is said to have killed in excess of 300 trained soldiers by himself while defending a bridge. He was so fierce in close quarters that his enemies were forced to kill him with a volley of arrows. He died standing upright.', '2019-04-05 02:30:22', 2, 'Benkei was said to have wandered around Kyoto every night on a personal quest to take 1000 swords from samurai warriors, whom he believed were arrogant and unworthy. After collecting 999 swords through duels and looking for his final prize, he met a young man playing a flute at Gojotenjin Shrine in Kyoto. The much shorter man supposedly carried a gilded sword around his waist. Instead of dueling at the shrine itself, the two walked to Gojo Bridge in the city where the bigger Benkei ultimately lost to the smaller warrior, who happened to be Minamoto no Yoshitsune, a son of Minamoto no Yoshitomo. Some sources claim that the fight took place not at the Gojo Bridge, but instead at Matsubara Bridge.[3] Not long after the duel, Benkei, frustrated and looking for revenge, waited for Yoshitsune at the Buddhist temple of Kiyomizu, where he lost yet again.[4] Henceforth, he became Yoshitsune\'s retainer and fought with him in the Genpei War against the Taira clan.');
 
-CREATE TABLE `Category`(
-    `CategoryID` INTEGER NOT NULL AUTO_INCREMENT,
-    `Type` VARCHAR(50),
-    PRIMARY KEY(`CategoryID`)
-) ENGINE = innodb DEFAULT CHARSET=utf8;
+--
+-- Indexes for dumped tables
+--
 
-#
-# Dumping data for table 'Category'
-#
+--
+-- Indexes for table `Post`
+--
+ALTER TABLE `Post`
+  ADD PRIMARY KEY (`PostID`),
+  ADD KEY `UserID` (`UserID`),
+  ADD KEY `CategoryID` (`CategoryID`);
 
-INSERT INTO `Category`(`Type`) VALUES ('Science');
-INSERT INTO `Category`(`Type`) VALUES ('Literature');
-INSERT INTO `Category`(`Type`) VALUES ('Art');
+--
+-- AUTO_INCREMENT for dumped tables
+--
 
+--
+-- AUTO_INCREMENT for table `Post`
+--
+ALTER TABLE `Post`
+  MODIFY `PostID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
+--
+-- Constraints for dumped tables
+--
 
-CREATE TABLE `Post`(
-    `PostID` INTEGER NOT NULL AUTO_INCREMENT,
-    `UserID` INTEGER,
-    `Title` VARCHAR(100),
-    `PostDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `CategoryID`INTEGER,
-    PRIMARY KEY(`PostID`),
-    FOREIGN KEY (`UserID`) REFERENCES Users(`UserID`),
-    FOREIGN KEY (`CategoryID`) REFERENCES Category(`CategoryID`)
-) ENGINE = innodb DEFAULT CHARSET=utf8;
-SET autocommit = 1;
-
-#
-# Dumping data for table 'Post'
-#
-
-INSERT INTO `Post`(`UserID`,`Title`,`CategoryID`) VALUES (1,"TIL I LEARNED NOTHING",1);
-INSERT INTO `Post`(`UserID`,`Title`,`CategoryID`) VALUES (3,"TIL I AM OKAY",2);
-INSERT INTO `Post`(`UserID`,`Title`,`CategoryID`) VALUES (1,"TIL I AM FINE",1);
-INSERT INTO `Post`(`UserID`,`Title`,`CategoryID`) VALUES (3,"TIL I BREATHE",3);
-INSERT INTO `Post`(`UserID`,`Title`,`CategoryID`) VALUES (5,"TIL I AWESOME",2);
-INSERT INTO `Post`(`UserID`,`Title`,`CategoryID`) VALUES (1,"TIL I MEOW",1);
-
-
-CREATE TABLE `Rank`(
-    `RankID` INTEGER NOT NULL AUTO_INCREMENT,
-    `UserID` INTEGER,
-    `PostID` INTEGER,
-    `Number` INTEGER,
-    PRIMARY KEY(`RankID`),
-    FOREIGN KEY (`UserID`) REFERENCES Users(`UserID`),
-    FOREIGN KEY (`PostID`) REFERENCES Post(`PostID`)
-) ENGINE = innodb DEFAULT CHARSET=utf8;
-
-SET autocommit = 1;
-
-INSERT INTO `Rank`(`UserID`,`PostID`,`Number`) VALUES (1,1,1);
-INSERT INTO `Rank`(`UserID`,`PostID`,`Number`) VALUES (3,2,1);
-INSERT INTO `Rank`(`UserID`,`PostID`,`Number`) VALUES (3,2,1);
-INSERT INTO `Rank`(`UserID`,`PostID`,`Number`) VALUES (4,1,1);
-INSERT INTO `Rank`(`UserID`,`PostID`,`Number`) VALUES (3,2,1);
-INSERT INTO `Rank`(`UserID`,`PostID`,`Number`) VALUES (3,4,1);
-INSERT INTO `Rank`(`UserID`,`PostID`,`Number`) VALUES (3,5,1);
-INSERT INTO `Rank`(`UserID`,`PostID`,`Number`) VALUES (4,1,1);
-
-CREATE TABLE `Comments`(
-    `CommentID` INTEGER NOT NULL AUTO_INCREMENT,
-    `PostID` INTEGER,
-    `UserID` INTEGER,
-    `Comment` LONGTEXT,
-    `CommentDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY(`CommentID`),
-    FOREIGN KEY (`UserID`) REFERENCES Users(`UserID`),
-    FOREIGN KEY (`PostID`) REFERENCES Post(`PostID`)
-) ENGINE = innodb DEFAULT CHARSET=utf8;
-
-SET autocommit = 1;
-
+--
+-- Constraints for table `Post`
+--
+ALTER TABLE `Post`
+  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `Users` (`UserID`),
+  ADD CONSTRAINT `post_ibfk_2` FOREIGN KEY (`CategoryID`) REFERENCES `Category` (`CategoryID`);

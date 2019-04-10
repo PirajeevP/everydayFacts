@@ -5,7 +5,7 @@ include 'functions.php';
 
 session_start();
 
-#Load Categories
+# LOAD CATEGORIES
 $fillCat = getCategories();
 
 # GET TITLE, CATEGORY, TEXT to update;
@@ -13,10 +13,6 @@ $title = $_POST['title'];
 $category = $_POST["sel-category"];
 $text = $_POST['content-area'];
 
-# THIS IS TESTING.. CAN BE DELETED LATER
-// echo "Title: " . $title . "<br>";
-// echo "Category: " . $category;
-// echo "<br> This is text: " . htmlentities($_POST['content-area']) . "<br>"; 
 
 # CREATE NEW POST
 if (!empty($_POST)){

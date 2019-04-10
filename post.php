@@ -6,22 +6,22 @@ include 'functions.php';
 session_start();
 
 $id = $_GET["id"];
-// echo "postID: " . $id;
-
 $user = $_SESSION['userID'];
-// echo "user: " . $user;
-
 $comment = $_POST['user-comment'];
-// echo "comment: " . $comment;
 
 $result = fillPost($id);
 $comments_result = getComments($id);
 $rank_result = getRank($id);
 
+# ONLY CREATES A NEW COMMENT IF COMMENT IS NOT EMPTY.
 if (!empty($_POST)){
-    if ( isset( $_POST['user-comment'] )){
-        echo "there's stuff in the comment!";
-        newComment($id,$user,$comment);
+    if ( isset( $_POST['user-comment']) ){
+        if ($comment != null){
+            newComment($id,$user,$comment);
+        } else {
+            $durl = "post.php?id=" . $id;
+            header ("Location: " . $durl);
+        }
     } 
 }
 

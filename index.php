@@ -5,16 +5,11 @@ include 'functions.php';
 
 session_start();
 
-// $result = getAll();
-
-// echo "this is session id: " . $_SESSION['userID'];
-
-// echo '<pre>';
-// var_dump($_SESSION);
-// echo '</pre>';
 $results_per_page = 3;
 
 $db = getDB();
+
+# THIS IS FOR PAGINATION
 
 # get SQL query + Bind Parameters
 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; }; 
@@ -28,8 +23,6 @@ GROUP BY p.PostID ORDER BY RANK DESC LIMIT $start_from , $results_per_page";
 $statement = mysqli_prepare($db, $statement);
 mysqli_stmt_execute($statement);
 $result = mysqli_stmt_get_result($statement);
-// $numberofrows = mysqli_num_rows($result);
-
 
 ?>
 
