@@ -3,7 +3,7 @@ include 'functions.php';
 
 /*
 
-    This is for SIGNUP .. 
+    This is for SIGNUP ..
 
 */
 
@@ -24,15 +24,15 @@ if ($username == null || $password == null || $email == null){
     $a = "signup.php?msg=wp";
     header ("Location: " . $a);
 } else if ($email!= $emailCheck){
-        //Email does not match 
+        //Email does not match
         $a = "signup.php?msg=we";
         header ("Location: " . $a);
-} else if (strlen($password) > 10){
+} else if (strlen($password) > 16){
     $a = "signup.php?msg=lp";
-        header ("Location: " . $a);  
-} else if (strlen($username) > 10){
+        header ("Location: " . $a);
+} else if (strlen($username) > 16){
     $a = "signup.php?msg=lu";
-        header ("Location: " . $a);  
+        header ("Location: " . $a);
 } else {
     SignUp($username, $password, $email);
 }

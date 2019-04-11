@@ -22,7 +22,7 @@ if (!empty($_POST)){
             $durl = "post.php?id=" . $id;
             header ("Location: " . $durl);
         }
-    } 
+    }
 }
 
 ?>
@@ -46,14 +46,14 @@ if (!empty($_POST)){
                             <p> <?php echo $row["Content"];?> </p>
                         </div>
                     </div>
-                    
+
                     <?php
                         }
                     } else {
                     echo ("No Posts");
                     }
                     ?>
-                 
+
 
                     <div class = "p-3 mt-3 user-post bg-white border border-light shadow-sm p-3 mb-5">
                         <h2>Join the discussion</h2>
@@ -83,7 +83,7 @@ if (!empty($_POST)){
                         <?php
                             }
                         } else {
-                        echo ("No Posts");
+                        echo ("No Comments");
                         }
                         ?>
                     </div>

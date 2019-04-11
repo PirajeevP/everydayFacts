@@ -4,18 +4,18 @@ function validateLogIn(){
     y = true;
     if (x == "") {
         e1 += "Username cannot be empty" + "<br>";
-        
+
         y =false;
-   }else if(/^[-\w\.\$@\*\!]{1,10}$/.test(x) == false){
-    e1 += "Username must be between 1-10 characters" + "<br>";
+   }else if(/^[-\w\.\$@\*\!]{1,16}$/.test(x) == false){
+    e1 += "Username must be between 1-16 characters" + "<br>";
     y =false;
    }
    x = document.forms["login"]["password"].value;
    if (x == "") {
     e1 += "Password cannot be empty" + "<br>";
     y =false;
-    } else if(/^[-\w\.\$@\*\!]{1,10}$/.test(x) == false){
-    e1 += "Password must be between 1-10 characters" + "<br>";
+  } else if(/^[-\w\.\$@\*\!]{1,16}$/.test(x) == false){
+    e1 += "Password must be between 1-16 characters" + "<br>";
     y =false;
     }
     if (e1!=""){
@@ -43,7 +43,7 @@ function validateSignUp(){
     }  else if(/^[-\w\.\$@\*\!]{1,16}$/.test(x) == false){
         e1 += "Password must be between 1-16 characters" + "<br>";
     }
-    
+
     dup = document.forms["signUp"]["passwordConf"].value;
     if(x != dup){
         e1 += "Passwords do not match" + "<br>";
