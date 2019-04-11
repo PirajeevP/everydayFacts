@@ -30,7 +30,7 @@ session_start();
                         <input type="submit" value = "Submit" class="mt-2 btn btn-secondary">
                     </form>
                     <div class = "mt-4">
-                        <a href = "forgetPassword.html">Forgot your password?</a>
+                        <a href = "#">Forgot your password?</a>
                         <div class="errobox" id="ero"> </div>
                         <?php
                             if (isset($_GET["msg"]) && $_GET["msg"] == 'failed') {

@@ -26,3 +26,9 @@ For proffessor..
 Username: Giraffe
 Password: 1234
 
+NOTES:
+The wong2580.sql file is the most recent DB.. but it also has
+my old tables from another course.
+
+
+
