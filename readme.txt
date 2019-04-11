@@ -13,6 +13,8 @@ Pirajeev Prabaharan
 prab6270@mylaurier.ca
 
 
+Project statement: I claim that the enclosed submission is theshared work of the team members
+
 Github Link
 ----------
 https://github.com/pirajeev1323/everydayFacts
