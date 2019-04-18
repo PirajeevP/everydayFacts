@@ -5,13 +5,7 @@ Final Project - EverydayFacts
 Team Members
 --------
 Michelle Wong
-150652580 
-wong2580@mylaurier.ca
-
 Pirajeev Prabaharan
-150646270
-prab6270@mylaurier.ca
-
 
 Project statement: I claim that the enclosed submission is theshared work of the team members
 
